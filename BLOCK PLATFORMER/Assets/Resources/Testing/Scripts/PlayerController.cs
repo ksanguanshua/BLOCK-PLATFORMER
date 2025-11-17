@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
         heldBox.position = hand.position;
         heldBox.GetComponent<Rigidbody2D>().gravityScale = 0;
 
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             heldBox.GetComponent<Collider2D>().enabled = true;
             heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
