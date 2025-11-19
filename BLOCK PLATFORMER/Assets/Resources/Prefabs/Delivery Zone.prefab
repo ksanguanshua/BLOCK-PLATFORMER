@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 254210183902859133}
   - component: {fileID: 7253323160593479039}
   - component: {fileID: 2765919925623971026}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Delivery Zone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
