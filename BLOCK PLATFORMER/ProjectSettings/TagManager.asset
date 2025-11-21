@@ -5,11 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Box
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Ground
@@ -41,6 +42,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Box
+    uniqueID: 3172184401
+    locked: 0
+  - name: Label
+    uniqueID: 2766987967
+    locked: 0
+  - name: Highlight
+    uniqueID: 888101437
+    locked: 0
+  - name: Spawner
+    uniqueID: 2461075419
     locked: 0
   m_RenderingLayers:
   - Default
