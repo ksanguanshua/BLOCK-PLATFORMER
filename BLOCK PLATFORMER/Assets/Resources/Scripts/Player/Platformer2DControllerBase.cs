@@ -6,10 +6,12 @@ using UnityEngine.InputSystem;
 public class Platformer2DControllerBase : MonoBehaviour
 {
     Movement movement;
+    TongueScript tongueScript;
 
     private void Start()
     {
         movement = GetComponent<Movement>();
+        tongueScript = GetComponent<TongueScript>();
     }
 
     #region Input Functions
@@ -21,6 +23,11 @@ public class Platformer2DControllerBase : MonoBehaviour
     {
         print(value.Get<float>());
         movement.JumpInput(value.Get<float>());
+    }
+    public void OnAttack(InputValue value)
+    {
+        print(value.Get<float>());
+        tongueScript.GrabInput(value.Get<float>());
     }
     #endregion
 }

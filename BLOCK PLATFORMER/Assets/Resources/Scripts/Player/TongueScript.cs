@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using SaintsField;
 using System.Collections;
 using Unity.VisualScripting;
+using SaintsField.Playa;
 
 public class TongueScript : MonoBehaviour
 {
@@ -10,15 +11,23 @@ public class TongueScript : MonoBehaviour
     public struct Modifiers
     {
         [SerializeField] public float tongueLength;
+        [SerializeField] public float throwForce;
+        [SerializeField] public float handLerpForce;
         [SerializeField] public AnimationCurve tongueExtensionCurve;
-
-
-
     }
 
     [System.Serializable]
     public struct States
     {
+        [LayoutStart("Box Holding", ELayout.FoldoutBox)]
+        [SerializeField][ReadOnly] public float holdInput;
+        [SerializeField][ReadOnly] public Transform heldBox;
+        [SerializeField][ReadOnly] public GameObject tongueBox;
+        [SerializeField][ReadOnly] public Transform hand;
+        [SerializeField][ReadOnly] public Transform grabbableBox;
+
+        [LayoutEnd]
+        [LayoutStart("Tongue States", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public bool tongueOut;
         [SerializeField][ReadOnly] public Vector2 tongueLastDir;
         [SerializeField][ReadOnly] public Vector2 tongueOffset;
@@ -32,6 +41,7 @@ public class TongueScript : MonoBehaviour
     {
         [SerializeField][ReadOnly] public Movement movement;
         [SerializeField][ReadOnly] public LineRenderer lineRenderer;
+        [SerializeField][ReadOnly] public Transform tongueTip;
         [SerializeField] public LayerMask layerBox;
     }
 
@@ -41,24 +51,92 @@ public class TongueScript : MonoBehaviour
 
     void Start()
     {
+        S.hand = transform.Find("Hand");
+        R.tongueTip = transform.Find("EndPointOfTongue");
         R.lineRenderer = GetComponentInChildren<LineRenderer>();
         R.movement = GetComponent<Movement>();
     }
     void Update()
     {
+        HandMovement();
         TongueUpdate();
+        if (S.heldBox != null)
+        {
+            HeldBox();
+        }
     }
-    void OnAttack(InputValue value)
+
+    public void GrabInput(float input)
     {
         if (!S.tongueOut)
-            ThrowTongue(R.movement.S.movementInput);
+        {
+            if (input == 1 && S.holdInput == 0)
+            {
+                ThrowTongue(R.movement.S.movementInput);
+            }
+        }
+        if (input == 0 && S.holdInput == 1 && S.heldBox != null)
+        {
+            S.heldBox.GetComponent<Collider2D>().enabled = true;
+            S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
+            S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(R.movement.S.movementInput.x, R.movement.S.movementInput.y + 1) * M.throwForce, ForceMode2D.Impulse);
+            S.heldBox = null;
+        }
+        S.holdInput = input;
+    }
+
+    void HandMovement()
+    {
+        S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)R.movement.S.movementInput, M.handLerpForce);
+    }
+
+    void Grab(GameObject box)
+    {
+        S.hand.GetChild(0).position = box.transform.position;
+        S.hand.GetChild(0).rotation = box.transform.rotation;
+        S.hand.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
+        S.heldBox = box.transform;
+        S.hand.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        S.grabbableBox = null;
+    }
+
+    void HeldBox()
+    {
+        S.heldBox.GetComponent<Collider2D>().enabled = false;
+        S.heldBox.rotation = S.hand.rotation;
+        S.heldBox.position = S.hand.position;
+        S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
     void ThrowTongue(Vector2 direction)
     {
-        S.tongueOffset = direction * M.tongueLength;
-        S.tongueOut = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, R.movement.S.movementInput, M.tongueLength, R.layerBox);
+        if (hit)
+        {
+            GameObject boxHit = hit.collider.gameObject;
+            S.tongueOffset = boxHit.transform.position - transform.position;
+            S.tongueOut = true;
+            print("box hit : " + boxHit);
+            BoxToTongueTip(boxHit);
+        }
+        else
+        {
+            print("box not hit");
+            S.tongueOffset = direction * M.tongueLength;
+            S.tongueOut = true;
+        }
         StartCoroutine("TongueRetract");
+    }
+
+    void BoxToTongueTip(GameObject box)
+    {
+        box.GetComponent<Collider2D>().enabled = false;
+        box.transform.rotation = S.hand.rotation;
+        box.GetComponent<Rigidbody2D>().gravityScale = 0;
+        box.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+        box.transform.parent = R.tongueTip;
+        box.transform.localPosition = Vector2.zero;
+        S.tongueBox = box;
     }
 
     IEnumerator TongueRetract()
@@ -85,6 +163,7 @@ public class TongueScript : MonoBehaviour
     void TongueUpdate()
     {
         S.tongueEndPoint = Vector3.Lerp(S.tongueEndPoint, S.tongueOffset, 0.5f);
+        R.tongueTip.position = S.tongueEndPoint + (Vector2)transform.position;
         // S.lerpTime += Time.deltaTime;
         // float percent = Mathf.Clamp01(M.tongueExtensionCurve.Evaluate(S.lerpTime));
         // S.tongueEndPoint = Vector3.Lerp(transform.position, (Vector2)transform.position + S.tongueOffset, percent);
@@ -93,6 +172,17 @@ public class TongueScript : MonoBehaviour
         {
             S.tongueRetracting = false;
         }
+
+        if (S.tongueBox != null)
+        {
+            if (Vector2.Distance(S.tongueBox.transform.position, transform.position) < 1 || S.tongueEndPoint == Vector2.zero)
+            {
+                Grab(S.tongueBox);
+                S.tongueBox.transform.parent = null;
+                S.tongueBox = null;
+            }
+        }
+        /*
         if (S.tongueRetracting)
         {
             print("huh");
@@ -113,5 +203,6 @@ public class TongueScript : MonoBehaviour
                 }
             }
         }
+        */
     }
 }

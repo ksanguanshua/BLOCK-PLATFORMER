@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6085995361433154805}
   - component: {fileID: 2828987516825931725}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   - component: {fileID: 7896712347925131474}
   - component: {fileID: 2207724639002041160}
   - component: {fileID: 1834152896697983877}
-  m_Layer: 3
+  m_Layer: 7
   m_Name: Box
   m_TagString: Box
   m_Icon: {fileID: 0}
@@ -191,10 +191,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: 0
-  labelSprites:
-  - {fileID: 21300000, guid: d272866c02d9e584786b809a72c7058a, type: 3}
-  - {fileID: 21300000, guid: 8aafbbb9cd9e032408c82f58344a700b, type: 3}
-  - {fileID: 21300000, guid: 92bc826e610123f459d2098c3ce16b74, type: 3}
 --- !u!50 &2207724639002041160
 Rigidbody2D:
   serializedVersion: 5
