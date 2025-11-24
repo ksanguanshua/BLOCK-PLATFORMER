@@ -19,25 +19,26 @@ public abstract class Movement : MonoBehaviour
     public struct Modifiers
     {
         [LayoutStart("Basic", ELayout.FoldoutBox)]
-        [Range(0.0f, 25.0f)][SerializeField] public float movementSpeed;
-        [Range(0.0f, 25.0f)][SerializeField] public float acceleration;
-        [Range(0.0f, 25.0f)][SerializeField] public float decceleration;
+        [SerializeField] public float movementSpeed;
+        [SerializeField] public float acceleration;
+        [SerializeField] public float decceleration;
         [LayoutStart("./Air", ELayout.FoldoutBox)]
         [SerializeField][RichLabel("Diff Val w/ Air?")] public bool DIFF_AIR_VALS;
-        [ShowIf(nameof(DIFF_AIR_VALS))][Range(0.0f, 25.0f)][SerializeField] public float movementSpeedAir;
-        [ShowIf(nameof(DIFF_AIR_VALS))][Range(0.0f, 25.0f)][SerializeField] public float accelerationAir;
-        [ShowIf(nameof(DIFF_AIR_VALS))][Range(0.0f, 25.0f)][SerializeField] public float deccelerationAir;
+        [ShowIf(nameof(DIFF_AIR_VALS))][SerializeField] public float movementSpeedAir;
+        [ShowIf(nameof(DIFF_AIR_VALS))][SerializeField] public float accelerationAir;
+        [ShowIf(nameof(DIFF_AIR_VALS))][SerializeField] public float deccelerationAir;
         [LayoutEnd]
         [LayoutStart("Jump", ELayout.FoldoutBox)]
         [SerializeField][RichLabel("Can Jump?")] public bool JUMP_ABLE;
-        [ShowIf(nameof(JUMP_ABLE))][Range(0.0f, 25.0f)][SerializeField] public float jumpForce;
+        [ShowIf(nameof(JUMP_ABLE))][SerializeField] public float jumpForce;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField] public Vector2 baseGroundNormal;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField][RichLabel("Multiple Jumps?")] public bool MULT_JUMP;
         [ShowIf(nameof(JUMP_ABLE), nameof(MULT_JUMP))][SerializeField] public int maxAmountOfJumpsInAir;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField][RichLabel("Variable Jump Height?")] public bool QUICK_FALL_OPTION; // the player CHOOSES quickfall when releasing jump button
-        [ShowIf(nameof(JUMP_ABLE), nameof(QUICK_FALL_OPTION))][Range(0.0f, 25.0f)][SerializeField] public float quickFallForce;
+        [ShowIf(nameof(JUMP_ABLE), nameof(QUICK_FALL_OPTION))][SerializeField] public float quickFallForce;
         [ShowIf(nameof(JUMP_ABLE), nameof(QUICK_FALL_OPTION))][SerializeField] public bool QUICK_FALLEN_FORCE; // the player FORCES quickfall at peak velocity
-        [ShowIf(nameof(JUMP_ABLE), nameof(QUICK_FALL_OPTION), nameof(QUICK_FALLEN_FORCE))][Range(-25.0f, 25.0f)][SerializeField] public float m_peakJumpVelocity; // used for FORCE
+        [ShowIf(nameof(JUMP_ABLE), nameof(QUICK_FALL_OPTION))][SerializeField] public float quickFallForceForced;
+        [ShowIf(nameof(JUMP_ABLE), nameof(QUICK_FALL_OPTION), nameof(QUICK_FALLEN_FORCE))][SerializeField] public float m_peakJumpVelocity; // used for FORCE
 
         [LayoutStart("./QOT", ELayout.FoldoutBox)]
         [ShowIf(nameof(JUMP_ABLE))][SerializeField][RichLabel("Jump QOT")] public bool JUMP_QOT;
@@ -47,8 +48,9 @@ public abstract class Movement : MonoBehaviour
         [ShowIf(nameof(JUMP_ABLE), nameof(JUMP_QOT), nameof(JUMP_CUE))][Range(0.0f, 5.0f)][SerializeField] public float jumpQueueMax;
         [ShowIf(nameof(JUMP_ABLE), nameof(JUMP_QOT), nameof(JUMP_CUE))][Range(0.0f, 5.0f)][SerializeField] public float jumpQueueClearTimeSeconds;
         [LayoutStart("Gravity Modifier", ELayout.FoldoutBox)]
-        [SerializeField][RichLabel("Gravity Mods?")] bool GRAV_MOD;
+        [SerializeField][RichLabel("Gravity Mods?")] public bool GRAV_MOD;
         [ShowIf(nameof(GRAV_MOD))][SerializeField] public float fallClamp; // clamp the fall speed of the player to make them fall slower
+        [ShowIf(nameof(GRAV_MOD))][SerializeField] public float gravityFallingAccel;
     }
     [SerializeField][SaintsRow][RichLabel("Modifiers")] public Modifiers M;
 

@@ -585,8 +585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 215988ce1b8234340a8126853e49362e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 1283400656}
-  lerpSpeed: 0.01
+  target: {fileID: 1883796158}
+  lerpSpeed: 0.05
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,18 +1484,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3380746414320527286, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
-      propertyPath: M.throwForce
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 3380746414320527286, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
-      propertyPath: M.handLerpForce
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3380746414320527286, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
-      propertyPath: R.layerBox.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 3498500387389140424, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -1540,15 +1528,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8971279544571314439, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
-      propertyPath: R.layerGround.m_Bits
-      value: 192
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
+--- !u!4 &1883796158 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6587418739060692436, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
+  m_PrefabInstance: {fileID: 1883796157}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &768489193580707023
 PrefabInstance:
   m_ObjectHideFlags: 0

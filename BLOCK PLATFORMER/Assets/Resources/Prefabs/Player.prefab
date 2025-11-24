@@ -230,22 +230,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   M:
-    movementSpeed: 5
-    acceleration: 3
-    decceleration: 3
+    movementSpeed: 7
+    acceleration: 5
+    decceleration: 5
     DIFF_AIR_VALS: 0
     movementSpeedAir: 0
     accelerationAir: 0
     deccelerationAir: 0
     JUMP_ABLE: 1
-    jumpForce: 8
+    jumpForce: 15
     baseGroundNormal: {x: 0, y: 1}
     MULT_JUMP: 0
     maxAmountOfJumpsInAir: 0
     QUICK_FALL_OPTION: 1
-    quickFallForce: 3
+    quickFallForce: 0
     QUICK_FALLEN_FORCE: 1
-    m_peakJumpVelocity: -1
+    quickFallForceForced: 0.5
+    m_peakJumpVelocity: 15
     JUMP_QOT: 1
     COYOTE_TIME: 1
     coyoteTimeSeconds: 1
@@ -253,25 +254,26 @@ MonoBehaviour:
     jumpQueueMax: 1
     jumpQueueClearTimeSeconds: 0.5
     GRAV_MOD: 1
-    fallClamp: -10
+    fallClamp: -20
+    gravityFallingAccel: 10
   R:
-    rb: {fileID: 0}
-    anim: {fileID: 0}
-    particleManager: {fileID: 0}
+    rb: {fileID: 8850231577840330183}
+    anim: {fileID: 7389270461922569004}
+    particleManager: {fileID: 4019525117390502347}
     layerGround:
       serializedVersion: 2
-      m_Bits: 64
+      m_Bits: 192
   S:
-    movementSpeed: 0
-    acceleration: 0
-    decceleration: 0
+    movementSpeed: 5
+    acceleration: 8
+    decceleration: 8
     movementInput: {x: 0, y: 0}
-    state: 0
-    facing: {x: 0, y: 0}
-    canTurn: 0
-    isGrounded: 0
+    state: 1
+    facing: {x: 1, y: 0}
+    canTurn: 1
+    isGrounded: 1
     amountOfJumps: 0
-    canQuickFall: 0
+    canQuickFall: 1
     coyoteTimeActive: 0
     jumpQueue: 0
   AO:
@@ -334,7 +336,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 82b8624ed374a5d4281d395b577aa351, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -448,8 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   M:
     tongueLength: 5
-    throwForce: 0
-    handLerpForce: 0
+    throwForce: 100
+    handLerpForce: 0.1
     tongueExtensionCurve:
       serializedVersion: 2
       m_Curve:
@@ -486,12 +488,14 @@ MonoBehaviour:
   R:
     movement: {fileID: 0}
     lineRenderer: {fileID: 0}
+    tongueTip: {fileID: 0}
     layerBox:
       serializedVersion: 2
       m_Bits: 128
   S:
     holdInput: 0
     heldBox: {fileID: 0}
+    tongueBox: {fileID: 0}
     hand: {fileID: 0}
     grabbableBox: {fileID: 0}
     tongueOut: 0

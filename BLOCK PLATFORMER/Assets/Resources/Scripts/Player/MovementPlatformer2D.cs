@@ -109,9 +109,9 @@ public class MovementPlatformer2D : Movement
         {
             //when the jump button is released [mm_quickFallOption]
             case 0:
-                if (S.canQuickFall && M.QUICK_FALL_OPTION)
+                if (S.canQuickFall && M.QUICK_FALL_OPTION && M.quickFallForce < R.rb.linearVelocityY)
                 {
-                    R.rb.linearVelocity += Vector2.down * M.quickFallForce;
+                    R.rb.linearVelocityY = -1 * M.quickFallForce;
                     S.canQuickFall = false;
                 }
                 break;
@@ -213,10 +213,13 @@ public class MovementPlatformer2D : Movement
             case State.Base:
                 R.rb.gravityScale = 1;
                 LRMovement(); // Left and right movement
-                if (!S.isGrounded && R.rb.linearVelocity.y < M.m_peakJumpVelocity && M.QUICK_FALLEN_FORCE && S.canQuickFall) // Force quickfall
+                if (!S.isGrounded && R.rb.linearVelocity.y < M.m_peakJumpVelocity && M.QUICK_FALLEN_FORCE) // Force quickfall
                 {
-                    R.rb.linearVelocity += Vector2.down * (M.quickFallForce / 2);
-                    S.canQuickFall = false;
+                    R.rb.linearVelocity += Vector2.down * M.quickFallForceForced;
+                }
+                if (R.rb.linearVelocity.y < 0 && M.GRAV_MOD)
+                {
+                    R.rb.linearVelocityY -= Time.deltaTime * M.gravityFallingAccel;
                 }
                 break;
 

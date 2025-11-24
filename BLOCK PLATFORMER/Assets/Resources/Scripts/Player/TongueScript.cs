@@ -75,12 +75,19 @@ public class TongueScript : MonoBehaviour
                 ThrowTongue(R.movement.S.movementInput);
             }
         }
-        if (input == 0 && S.holdInput == 1 && S.heldBox != null)
+        if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw
         {
             S.heldBox.GetComponent<Collider2D>().enabled = true;
             S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(R.movement.S.movementInput.x, R.movement.S.movementInput.y + 1) * M.throwForce, ForceMode2D.Impulse);
             S.heldBox = null;
+        }
+        else if (input == 0 && S.holdInput == 1 && S.tongueBox != null) // pulling box with tongue
+        {
+            S.tongueBox.transform.parent = null;
+            S.tongueBox.GetComponent<Collider2D>().enabled = true;
+            S.tongueBox.GetComponent<Rigidbody2D>().gravityScale = 2;
+            S.tongueBox = null;
         }
         S.holdInput = input;
     }
@@ -117,7 +124,7 @@ public class TongueScript : MonoBehaviour
             S.tongueOffset = boxHit.transform.position - transform.position;
             S.tongueOut = true;
             print("box hit : " + boxHit);
-            BoxToTongueTip(boxHit);
+            S.tongueBox = boxHit;
         }
         else
         {
@@ -136,7 +143,6 @@ public class TongueScript : MonoBehaviour
         box.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         box.transform.parent = R.tongueTip;
         box.transform.localPosition = Vector2.zero;
-        S.tongueBox = box;
     }
 
     IEnumerator TongueRetract()
@@ -150,6 +156,8 @@ public class TongueScript : MonoBehaviour
         yield return new WaitForSeconds(0.15f);
         S.tongueRetracting = true;
         yield return new WaitForSeconds(0.05f);
+        if (S.tongueBox != null)
+            BoxToTongueTip(S.tongueBox);
         rigidbody2D.gravityScale = 1;
         R.movement.S.acceleration = R.movement.M.acceleration;
         R.movement.S.decceleration = R.movement.M.decceleration;
