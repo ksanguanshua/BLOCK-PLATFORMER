@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: fcea4d371757bbb45977557cc1049963
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 269741
+  packageName: Saints Field
+  packageVersion: 5.3.2
+  assetPath: Assets/SaintsField/Samples/RawResources/SerDictionary.prefab
+  uploadId: 818446
