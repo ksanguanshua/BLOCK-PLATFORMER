@@ -11,9 +11,12 @@ public class TongueScript : MonoBehaviour
     public struct Modifiers
     {
         [SerializeField] public float tongueLength;
+        [SerializeField] public float tongueShootTime;
         [SerializeField] public float throwForce;
         [SerializeField] public float handLerpForce;
         [SerializeField] public AnimationCurve tongueExtensionCurve;
+
+        [SerializeField] public float pushBackForce;
     }
 
     [System.Serializable]
@@ -21,6 +24,8 @@ public class TongueScript : MonoBehaviour
     {
         [LayoutStart("Box Holding", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public float holdInput;
+        [SerializeField][ReadOnly] public Vector2 lastFacingDir;
+        [SerializeField][ReadOnly] public bool canTurn;
         [SerializeField][ReadOnly] public Transform heldBox;
         [SerializeField][ReadOnly] public GameObject tongueBox;
         [SerializeField][ReadOnly] public Transform hand;
@@ -72,14 +77,14 @@ public class TongueScript : MonoBehaviour
         {
             if (input == 1 && S.holdInput == 0)
             {
-                ThrowTongue(R.movement.S.movementInput);
+                ThrowTongue(S.lastFacingDir);
             }
         }
         if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw
         {
             S.heldBox.GetComponent<Collider2D>().enabled = true;
             S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
-            S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(R.movement.S.movementInput.x, R.movement.S.movementInput.y + 1) * M.throwForce, ForceMode2D.Impulse);
+            S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
             S.heldBox = null;
         }
         else if (input == 0 && S.holdInput == 1 && S.tongueBox != null) // pulling box with tongue
@@ -94,11 +99,16 @@ public class TongueScript : MonoBehaviour
 
     void HandMovement()
     {
-        S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)R.movement.S.movementInput, M.handLerpForce);
+        if (R.movement.S.movementInput != Vector2.zero && S.canTurn)
+        {
+            S.lastFacingDir = R.movement.S.movementInput;
+        }
+        S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)S.lastFacingDir, M.handLerpForce);
     }
 
     void Grab(GameObject box)
     {
+        GetComponent<Rigidbody2D>().AddForce(-S.lastFacingDir * M.pushBackForce, ForceMode2D.Impulse);
         S.hand.GetChild(0).position = box.transform.position;
         S.hand.GetChild(0).rotation = box.transform.rotation;
         S.hand.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
@@ -117,7 +127,8 @@ public class TongueScript : MonoBehaviour
 
     void ThrowTongue(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, R.movement.S.movementInput, M.tongueLength, R.layerBox);
+        S.canTurn = false;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, M.tongueLength, R.layerBox);
         if (hit)
         {
             GameObject boxHit = hit.collider.gameObject;
@@ -166,6 +177,7 @@ public class TongueScript : MonoBehaviour
         S.tongueRetracting = true;
         S.tongueOut = false;
         S.tongueOffset = Vector2.zero;
+        S.canTurn = true;
     }
 
     void TongueUpdate()

@@ -174,15 +174,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.001472754
-    y: 0.002617801
-    width: 0.99558175
-    height: 0.9947644
+    x: 0
+    y: 0.0023923444
+    width: 1
+    height: 0.9952153
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.9375
+  orthographic size: 6.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -748,6 +748,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 238332159278273813, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380746414320527286, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
+      propertyPath: M.pushBackForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3380746414320527286, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
+      propertyPath: M.tongueShootTime
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3498500387389140424, guid: 24e486a44e7b6f84dbc4ed2b343d7fc8, type: 3}
       propertyPath: m_Name
       value: Player
