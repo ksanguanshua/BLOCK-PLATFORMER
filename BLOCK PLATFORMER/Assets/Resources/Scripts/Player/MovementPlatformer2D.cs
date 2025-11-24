@@ -111,7 +111,8 @@ public class MovementPlatformer2D : Movement
             case 0:
                 if (S.canQuickFall && M.QUICK_FALL_OPTION && M.quickFallForce < R.rb.linearVelocityY)
                 {
-                    R.rb.linearVelocityY = -1 * M.quickFallForce;
+                    //R.rb.linearVelocityY = -1 * M.quickFallForce;
+                    R.rb.linearVelocityY += -1 * M.quickFallForce;
                     S.canQuickFall = false;
                 }
                 break;

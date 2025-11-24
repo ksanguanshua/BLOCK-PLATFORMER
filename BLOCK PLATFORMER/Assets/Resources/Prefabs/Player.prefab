@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 984016449232683473}
   - component: {fileID: 4115886532677738203}
   - component: {fileID: 3380746414320527286}
+  - component: {fileID: 238332159278273813}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -243,7 +244,7 @@ MonoBehaviour:
     MULT_JUMP: 0
     maxAmountOfJumpsInAir: 0
     QUICK_FALL_OPTION: 1
-    quickFallForce: 0
+    quickFallForce: 7
     QUICK_FALLEN_FORCE: 1
     quickFallForceForced: 0.5
     m_peakJumpVelocity: 15
@@ -450,6 +451,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   M:
     tongueLength: 5
+    tongueShootTime: 0
     throwForce: 100
     handLerpForce: 0.1
     tongueExtensionCurve:
@@ -485,6 +487,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+    pushBackForce: 0
   R:
     movement: {fileID: 0}
     lineRenderer: {fileID: 0}
@@ -494,6 +497,8 @@ MonoBehaviour:
       m_Bits: 128
   S:
     holdInput: 0
+    lastFacingDir: {x: 0, y: 0}
+    canTurn: 0
     heldBox: {fileID: 0}
     tongueBox: {fileID: 0}
     hand: {fileID: 0}
@@ -504,6 +509,25 @@ MonoBehaviour:
     tongueRetracting: 0
     tongueEndPoint: {x: 0, y: 0}
     lerpTime: 0
+--- !u!114 &238332159278273813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3498500387389140424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0aa1bb92b27c0a4cab38983d6a3249a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ss_canDash: 1
+  FORCE_BASED: 1
+  m_dashForce: 20
+  m_dashDuration: 0.2
+  m_dashCooldown: 0.2
+  INTERRUPT_MOVEMENT: 0
+  RESET_AFTER_DASH: 0
 --- !u!1 &5065444030231018868
 GameObject:
   m_ObjectHideFlags: 0
