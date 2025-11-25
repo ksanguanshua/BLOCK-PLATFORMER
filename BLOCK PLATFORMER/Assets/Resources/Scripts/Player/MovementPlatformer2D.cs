@@ -181,7 +181,8 @@ public class MovementPlatformer2D : Movement
     void BasicJump()
     {
         //c_sfxManager.PlaySoundOneShot("jump");
-
+        R.particleManager.PlayParticle("PSFloorDust");
+        R.particleManager.PlayParticle("PSDustDrag");
         Launch(M.baseGroundNormal, M.jumpForce, true);
     }
     #endregion
@@ -356,6 +357,7 @@ public class MovementPlatformer2D : Movement
                 if (!S.isGrounded)
                 {
                     //c_sfxManager.PlaySoundOneShot("land");
+                    R.particleManager.PlayParticle("PSFloorDust");
                 }
                 S.isGrounded = true;
                 R.anim.SetBool("Grounded", true);
