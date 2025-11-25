@@ -46,6 +46,7 @@ public class TongueScript : MonoBehaviour
     {
         [SerializeField][ReadOnly] public Movement movement;
         [SerializeField][ReadOnly] public Animator anim;
+        [SerializeField] public Transform playerSprite;
         [SerializeField] public LineRenderer lineRenderer;
         [SerializeField] public LineRenderer lineRendererVisualLayer1;
         [SerializeField] public LineRenderer lineRendererVisualLayer2;
@@ -115,18 +116,29 @@ public class TongueScript : MonoBehaviour
             {
                 R.anim.SetBool("lookRight", false);
                 R.anim.SetBool("moving", true);
+                R.movement.R.particleManager.StartPlay("PSDustWalk");
             }
             else if (R.movement.S.movementInput.x > 0)
             {
                 R.anim.SetBool("lookRight", true);
                 R.anim.SetBool("moving", true);
+                R.movement.R.particleManager.StartPlay("PSDustWalk");
             }
         }
+
         S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)S.lastFacingDir, M.handLerpForce);
         R.anim.SetFloat("inputX", S.lastFacingDir.x);
         R.anim.SetFloat("inputY", S.lastFacingDir.y);
+
         if (R.movement.S.movementInput.x == 0)
+        {
             R.anim.SetBool("moving", false);
+        }
+
+        if (R.movement.S.movementInput.x == 0 || !R.movement.S.isGrounded)
+        {
+            R.movement.R.particleManager.StopParticle("PSDustWalk");
+        }
     }
 
     void Grab(GameObject box)
@@ -210,7 +222,15 @@ public class TongueScript : MonoBehaviour
         S.tongueOffset = Vector2.zero;
         S.canTurn = true;
         if (S.tongueBox != null)
+        {
+            ParticleSystem ps = R.movement.R.particleManager.GetParticleSystem("PSRing");
+            var main = ps.main;
+            //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            main.startRotationZ = (R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad;
+            print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
+            R.movement.R.particleManager.PlayParticle("PSRing");
             R.movement.R.particleManager.PlayParticle("PSBoxBurst");
+        }
         R.anim.SetBool("lookNEUTRAL", false);
     }
 
