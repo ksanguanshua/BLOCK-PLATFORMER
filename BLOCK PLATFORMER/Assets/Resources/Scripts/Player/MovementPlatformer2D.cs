@@ -181,7 +181,7 @@ public class MovementPlatformer2D : Movement
     void BasicJump()
     {
         //c_sfxManager.PlaySoundOneShot("jump");
-        R.particleManager.PlayParticle("PSFloorDust");
+        R.particleManager.PlayParticle("PSFloorDustJump");
         R.particleManager.PlayParticle("PSDustDrag");
         Launch(M.baseGroundNormal, M.jumpForce, true);
     }
@@ -372,13 +372,21 @@ public class MovementPlatformer2D : Movement
         // change acceleration based on ground state
         if (S.state == State.Base && M.DIFF_AIR_VALS)
         {
-            if (S.isGrounded)
+            if (S.movementInput.y < 0 && S.isGrounded)
             {
+                S.movementSpeed = 0;
+                S.acceleration = 2;
+                S.decceleration = 2;
+            }
+            else if (S.isGrounded)
+            {
+                S.movementSpeed = M.movementSpeed;
                 S.acceleration = M.acceleration;
                 S.decceleration = M.decceleration;
             }
             else
             {
+                S.movementSpeed = M.movementSpeedAir;
                 S.acceleration = M.accelerationAir;
                 S.decceleration = M.deccelerationAir;
             }

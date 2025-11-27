@@ -15,8 +15,14 @@ public class TongueScript : MonoBehaviour
         [SerializeField] public float throwForce;
         [SerializeField] public float handLerpForce;
         [SerializeField] public AnimationCurve tongueExtensionCurve;
-
         [SerializeField] public float pushBackForce;
+
+        [LayoutStart("Tongue Launching", ELayout.FoldoutBox)]
+        [SerializeField] public float tonguePullForce;
+        [SerializeField] public float launchAccel;
+        [SerializeField] public float launchDeccel;
+        [SerializeField][ReadOnly] public float baseAccel;
+        [SerializeField][ReadOnly] public float baseDeccel;
     }
 
     [System.Serializable]
@@ -34,6 +40,7 @@ public class TongueScript : MonoBehaviour
         [LayoutEnd]
         [LayoutStart("Tongue States", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public bool tongueOut;
+        [SerializeField][ReadOnly] public bool tonguePulling;
         [SerializeField][ReadOnly] public Vector2 tongueLastDir;
         [SerializeField][ReadOnly] public Vector2 tongueOffset;
         [SerializeField][ReadOnly] public bool tongueRetracting;
@@ -52,6 +59,7 @@ public class TongueScript : MonoBehaviour
         [SerializeField] public LineRenderer lineRendererVisualLayer2;
         [SerializeField][ReadOnly] public Transform tongueTip;
         [SerializeField] public LayerMask layerBox;
+        [SerializeField] public LayerMask layerGround;
     }
 
     [SerializeField][SaintsRow][RichLabel("Modifiers")] public Modifiers M;
@@ -66,6 +74,9 @@ public class TongueScript : MonoBehaviour
         R.tongueTip = transform.Find("EndPointOfTongue");
         R.movement = GetComponent<Movement>();
         R.anim = GetComponent<Animator>();
+
+        M.baseAccel = R.movement.M.accelerationAir;
+        M.baseDeccel = R.movement.M.deccelerationAir;
     }
     void Update()
     {
@@ -78,6 +89,28 @@ public class TongueScript : MonoBehaviour
         R.anim.SetBool("tongueOut", S.tongueOut);
         R.anim.SetBool("grounded", R.movement.S.isGrounded);
         R.anim.SetFloat("velocityY", R.movement.R.rb.linearVelocityY);
+
+        if (R.movement.S.movementInput.y >= 0)
+        {
+            R.movement.M.accelerationAir = M.baseAccel;
+            R.movement.M.deccelerationAir = M.baseDeccel;
+        }
+
+        if (Mathf.Abs(R.movement.R.rb.linearVelocityX) >= 10)
+        {
+            R.movement.R.particleManager.StartPlay("PSRings");
+            ParticleSystem PSthrow = R.movement.R.particleManager.GetParticleSystem("PSTrail");
+            var main = PSthrow.main;
+            main.startRotationY = R.playerSprite.eulerAngles.y * Mathf.Deg2Rad;
+            var textureSheetAnimation = PSthrow.textureSheetAnimation;
+            textureSheetAnimation.SetSprite(0, R.playerSprite.GetComponent<SpriteRenderer>().sprite);
+            R.movement.R.particleManager.StartPlay("PSTrail");
+        }
+        else
+        {
+            R.movement.R.particleManager.StopParticle("PSRings");
+            R.movement.R.particleManager.StopParticle("PSTrail");
+        }
     }
 
     public void GrabInput(float input)
@@ -88,14 +121,24 @@ public class TongueScript : MonoBehaviour
             {
                 R.anim.SetTrigger("tongueThrow");
                 ThrowTongue(S.lastFacingDir);
+
+                GameObject PSthrow = R.movement.R.particleManager.GetParticleSystem("PSTongueThrow").gameObject;
+                float angle = Mathf.Atan2(S.lastFacingDir.y, S.lastFacingDir.x) * Mathf.Rad2Deg;
+                PSthrow.transform.rotation = Quaternion.Euler(0, 0, angle);
+                R.movement.R.particleManager.PlayParticle("PSTongueThrow");
             }
         }
-        if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw
+        if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw --> throw
         {
             S.heldBox.GetComponent<Collider2D>().enabled = true;
             S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
             S.heldBox = null;
+
+            GameObject PSthrow = R.movement.R.particleManager.GetParticleSystem("PSThrow").gameObject;
+            float angle = Mathf.Atan2(S.lastFacingDir.y + 1, S.lastFacingDir.x) * Mathf.Rad2Deg;
+            PSthrow.transform.rotation = Quaternion.Euler(0, 0, angle);
+            R.movement.R.particleManager.PlayParticle("PSThrow");
         }
         else if (input == 0 && S.holdInput == 1 && S.tongueBox != null) // pulling box with tongue
         {
@@ -129,6 +172,7 @@ public class TongueScript : MonoBehaviour
         S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)S.lastFacingDir, M.handLerpForce);
         R.anim.SetFloat("inputX", S.lastFacingDir.x);
         R.anim.SetFloat("inputY", S.lastFacingDir.y);
+        R.anim.SetFloat("inputHoldY", R.movement.S.movementInput.y);
 
         if (R.movement.S.movementInput.x == 0)
         {
@@ -143,8 +187,6 @@ public class TongueScript : MonoBehaviour
 
     void Grab(GameObject box)
     {
-
-        GetComponent<Rigidbody2D>().AddForce(-S.lastFacingDir * M.pushBackForce, ForceMode2D.Impulse);
         S.hand.GetChild(0).position = box.transform.position;
         S.hand.GetChild(0).rotation = box.transform.rotation;
         S.hand.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
@@ -168,6 +210,10 @@ public class TongueScript : MonoBehaviour
         if (hit)
         {
             GameObject boxHit = hit.collider.gameObject;
+
+            boxHit.transform.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            boxHit.transform.GetComponent<Rigidbody2D>().gravityScale = 0;
+
             S.tongueOffset = boxHit.transform.position - transform.position;
             S.tongueOut = true;
             print("box hit : " + boxHit);
@@ -178,13 +224,27 @@ public class TongueScript : MonoBehaviour
         else
         {
             print("box not hit");
-            S.tongueOffset = direction * M.tongueLength;
+            RaycastHit2D groundHit = Physics2D.Raycast(transform.position, direction, M.tongueLength, R.layerGround);
+            if (groundHit)
+            {
+                S.tongueOffset = groundHit.point - (Vector2)transform.position + (groundHit.point - (Vector2)transform.position).normalized * 0.1f;
+                S.tonguePulling = true;
+            }
+            else
+            {
+                S.tongueOffset = direction * M.tongueLength;
+            }
             S.tongueOut = true;
             R.anim.SetFloat("tongueX", direction.x);
             R.anim.SetFloat("tongueY", direction.y);
         }
 
         StartCoroutine("TongueRetract");
+    }
+
+    void CheckCatchMidThrow(Vector2 direction)
+    {
+
     }
 
     void BoxToTongueTip(GameObject box)
@@ -220,9 +280,9 @@ public class TongueScript : MonoBehaviour
         S.tongueRetracting = true;
         S.tongueOut = false;
         S.tongueOffset = Vector2.zero;
-        S.canTurn = true;
         if (S.tongueBox != null)
         {
+            GetComponent<Rigidbody2D>().AddForce(-S.lastFacingDir * M.pushBackForce, ForceMode2D.Impulse);
             ParticleSystem ps = R.movement.R.particleManager.GetParticleSystem("PSRing");
             var main = ps.main;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -230,7 +290,18 @@ public class TongueScript : MonoBehaviour
             print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
             R.movement.R.particleManager.PlayParticle("PSRing");
             R.movement.R.particleManager.PlayParticle("PSBoxBurst");
+            Grab(S.tongueBox);
+            S.tongueBox.transform.parent = null;
+            S.tongueBox = null;
         }
+        else if (S.tonguePulling == true)
+        {
+            GetComponent<Rigidbody2D>().AddForce(S.lastFacingDir * M.tonguePullForce, ForceMode2D.Impulse);
+            R.movement.M.accelerationAir = M.launchAccel;
+            R.movement.M.deccelerationAir = M.launchDeccel;
+            S.tonguePulling = false;
+        }
+        S.canTurn = true;
         R.anim.SetBool("lookNEUTRAL", false);
     }
 
@@ -249,15 +320,6 @@ public class TongueScript : MonoBehaviour
             S.tongueRetracting = false;
         }
 
-        if (S.tongueBox != null)
-        {
-            if (Vector2.Distance(S.tongueBox.transform.position, transform.position) < 1 || S.tongueEndPoint == Vector2.zero)
-            {
-                Grab(S.tongueBox);
-                S.tongueBox.transform.parent = null;
-                S.tongueBox = null;
-            }
-        }
         /*
         if (S.tongueRetracting)
         {
