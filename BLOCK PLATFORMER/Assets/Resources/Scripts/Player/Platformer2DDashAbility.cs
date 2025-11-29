@@ -17,7 +17,6 @@ using UnityEngine;
  * ao_ = add on (usually script)
  */
 
-[RequireComponent(typeof(Platformer2DMovementBase))]
 public class Platformer2DDashAbility : MonoBehaviour
 {
     #region States
@@ -126,7 +125,7 @@ public class Platformer2DDashAbility : MonoBehaviour
         v_dashDirection = c_mb.in_movementInput.normalized;
 
         // Apply dash force
-        c_rb.AddForce(new Vector2 (v_dashDirection.x * m_dashForce, v_dashDirection.y * (m_dashForce/2)), ForceMode2D.Impulse);
+        c_rb.AddForce(new Vector2(v_dashDirection.x * m_dashForce, v_dashDirection.y * (m_dashForce / 2)), ForceMode2D.Impulse);
 
         // Wait for dash duration
         yield return new WaitForSeconds(m_dashDuration);

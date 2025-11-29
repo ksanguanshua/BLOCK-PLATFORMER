@@ -111,7 +111,8 @@ public class MovementPlatformer2D : Movement
             case 0:
                 if (S.canQuickFall && M.QUICK_FALL_OPTION && M.quickFallForce < R.rb.linearVelocityY)
                 {
-                    R.rb.linearVelocityY = -1 * M.quickFallForce;
+                    //R.rb.linearVelocityY = -1 * M.quickFallForce;
+                    R.rb.linearVelocityY += -1 * M.quickFallForce;
                     S.canQuickFall = false;
                 }
                 break;
@@ -180,7 +181,8 @@ public class MovementPlatformer2D : Movement
     void BasicJump()
     {
         //c_sfxManager.PlaySoundOneShot("jump");
-
+        R.particleManager.PlayParticle("PSFloorDustJump");
+        R.particleManager.PlayParticle("PSDustDrag");
         Launch(M.baseGroundNormal, M.jumpForce, true);
     }
     #endregion
@@ -355,6 +357,7 @@ public class MovementPlatformer2D : Movement
                 if (!S.isGrounded)
                 {
                     //c_sfxManager.PlaySoundOneShot("land");
+                    R.particleManager.PlayParticle("PSFloorDust");
                 }
                 S.isGrounded = true;
                 R.anim.SetBool("Grounded", true);
@@ -369,13 +372,21 @@ public class MovementPlatformer2D : Movement
         // change acceleration based on ground state
         if (S.state == State.Base && M.DIFF_AIR_VALS)
         {
-            if (S.isGrounded)
+            if (S.movementInput.y < 0 && S.isGrounded)
             {
+                S.movementSpeed = 0;
+                S.acceleration = 2;
+                S.decceleration = 2;
+            }
+            else if (S.isGrounded)
+            {
+                S.movementSpeed = M.movementSpeed;
                 S.acceleration = M.acceleration;
                 S.decceleration = M.decceleration;
             }
             else
             {
+                S.movementSpeed = M.movementSpeedAir;
                 S.acceleration = M.accelerationAir;
                 S.decceleration = M.deccelerationAir;
             }
