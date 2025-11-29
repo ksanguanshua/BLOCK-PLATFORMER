@@ -4,8 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class DeliveryZone : MonoBehaviour
 {
-    [SerializeField] BoxTypes boxTypes;
-    List<BoxTypes.ItemLabel> items = new();
+    List<Sprite> items = new();
     int savedItemCount;
 
     List<GameObject> icons = new();
@@ -80,8 +79,7 @@ public class DeliveryZone : MonoBehaviour
 
         for (int i = 0; i < orderSize; i++)
         {
-            
-            items.Add((BoxTypes.ItemLabel)Random.Range(0, boxTypes.labelSprites.Length));
+            items.Add(BoxTypes.instance.labelSprites[Random.Range(0, BoxTypes.instance.labelSprites.Length)]);
             GameObject icon = new();
             icons.Add(icon);
         }
@@ -94,9 +92,10 @@ public class DeliveryZone : MonoBehaviour
         {
             if (collider.TryGetComponent(out Box box))
             {
-                if (items.Contains(box.label))
+                if (items.Contains(box.labelSprite))
                 {
-                    items.Remove(box.label);
+                    Debug.Log("CORRECT BOX");
+                    items.Remove(box.labelSprite);
                     Destroy(icons[0]);
                     icons.RemoveAt(0);
                     Destroy(box.gameObject);
@@ -114,12 +113,12 @@ public class DeliveryZone : MonoBehaviour
             
             if (icon.TryGetComponent(out SpriteRenderer sr))
             {
-                sr.sprite = boxTypes.labelSprites[(int)items[i]];
+                sr.sprite = items[i];
                 continue;
             }
 
             sr = icon.gameObject.AddComponent<SpriteRenderer>();
-            sr.sprite = boxTypes.labelSprites[(int)items[i]];
+            sr.sprite = items[i];
         }
     }
 }

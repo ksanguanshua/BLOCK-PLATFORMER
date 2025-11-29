@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -167,7 +167,7 @@ SpriteRenderer:
   m_SortingLayerID: -1122782895
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 7499154508442906066, guid: 29914a3b41695134fa79899e42b6aca3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f1bb0102fa989f41a1858046eca1f8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: 0
+  labelSprite: {fileID: 0}
 --- !u!50 &2207724639002041160
 Rigidbody2D:
   serializedVersion: 5

@@ -2,20 +2,24 @@ using UnityEngine;
 
 public class BoxTypes : MonoBehaviour
 {
-    public enum ItemLabel
-    {
-        apple,
-        banana,
-        carrot,
-        cheese,
-        cherries
-    }
+    public static BoxTypes instance;
 
     [SerializeField]
     public Sprite[] labelSprites;
 
     private void Awake()
     {
-        labelSprites = Resources.LoadAll<Sprite>("Sprites/Labels");
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != null)
+        {
+            Destroy(this);
+        }
+
+        DontDestroyOnLoad(this);
+
+        instance.labelSprites = Resources.LoadAll<Sprite>("Sprites/Labels/boxLabels");
     }
 }
