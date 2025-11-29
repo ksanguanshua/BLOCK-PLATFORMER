@@ -43,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Player
+    uniqueID: 1449538051
+    locked: 0
   - name: Box
     uniqueID: 3172184401
     locked: 0
@@ -54,6 +57,9 @@ TagManager:
     locked: 0
   - name: Spawner
     uniqueID: 2461075419
+    locked: 0
+  - name: Particles
+    uniqueID: 889968909
     locked: 0
   m_RenderingLayers:
   - Default

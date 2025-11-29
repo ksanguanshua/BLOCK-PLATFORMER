@@ -2,20 +2,8 @@ using UnityEngine;
 using SaintsField;
 using SaintsField.Playa;
 
-public abstract class Movement : MonoBehaviour
+public class P2DCrouch : MonoBehaviour
 {
-    public enum State
-    {
-        Inactive, // NO CONTROL OVER PLAYER (use for cutscenes and other stuff)
-        Base, // normal state (full control)
-        Knockback, // no control (lowers acceleration and decceleration so that only the knockback controls you)
-        Ledging, // diff control pattern (when the character is hanging on a ledge) AO LEDGE
-        WallJumping, // similar to normal (however with lower acceleration and decceleration in order to stop repeat walljumps) AO WALL
-        WallSliding,
-        Dashing, // AO DASH
-        Crouching
-    }
-
     [System.Serializable]
     public struct Modifiers
     {
@@ -67,7 +55,7 @@ public abstract class Movement : MonoBehaviour
         [ReadOnly] public Vector2 movementInput;
         [LayoutEnd]
         [LayoutStart("States", ELayout.FoldoutBox)]
-        [SerializeField] public State state;
+        //[SerializeField] public State state;
         [SerializeField][ReadOnly] public Vector2 facing;
         [SerializeField][ReadOnly] public bool canTurn;
         [SerializeField][ReadOnly] public bool isGrounded;
@@ -94,23 +82,4 @@ public abstract class Movement : MonoBehaviour
     [SerializeField][SaintsRow][RichLabel("References")] public References R;
 
     [SerializeField][SaintsRow][RichLabel("States")] public States S;
-
-    public virtual void ModtoState()
-    {
-        S.acceleration = M.acceleration;
-        S.decceleration = M.decceleration;
-        S.movementSpeed = M.movementSpeed;
-    }
-
-    protected virtual void ComponentGrab()
-    {
-        R.rb = GetComponent<Rigidbody2D>();
-        R.anim = GetComponent<Animator>();
-        R.particleManager = GetComponent<ParticleManager>();
-    }
-
-    // Input functions
-    public abstract void MoveInput(Vector2 input);
-
-    public abstract void JumpInput(float input);
 }
