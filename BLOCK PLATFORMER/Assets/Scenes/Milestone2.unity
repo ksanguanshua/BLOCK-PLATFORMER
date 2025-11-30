@@ -535,14 +535,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.0022624435
-    width: 0.9987261
-    height: 0.9954752
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.875
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -735,7 +735,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000051b113bdbfe2eca43d5aef34db07b192033266560dd90b35
+  m_ApplyToSortingLayers: 00000000b1bb31a70332665651b113bdbfe2eca43d5aef34db07b1920dd90b35
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -1528,10 +1528,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7253323160593479039, guid: b86fcaad6bf6762449073009241d68c9, type: 3}
-      propertyPath: boxTypes
-      value: 
-      objectReference: {fileID: 1821862410}
     - target: {fileID: 7511386678637106568, guid: b86fcaad6bf6762449073009241d68c9, type: 3}
       propertyPath: m_Name
       value: Delivery Zone (1)
@@ -1776,18 +1772,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5106818329494459568, guid: b86fcaad6bf6762449073009241d68c9, type: 3}
-      propertyPath: m_fontSize
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5106818329494459568, guid: b86fcaad6bf6762449073009241d68c9, type: 3}
-      propertyPath: m_fontSizeBase
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7253323160593479039, guid: b86fcaad6bf6762449073009241d68c9, type: 3}
-      propertyPath: boxTypes
-      value: 
-      objectReference: {fileID: 1821862410}
     - target: {fileID: 7511386678637106568, guid: b86fcaad6bf6762449073009241d68c9, type: 3}
       propertyPath: m_Name
       value: Delivery Zone
