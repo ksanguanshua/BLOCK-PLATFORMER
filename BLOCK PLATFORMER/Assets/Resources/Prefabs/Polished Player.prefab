@@ -29586,7 +29586,7 @@ GameObject:
   - component: {fileID: 4933648747745781141}
   - component: {fileID: 7027370296070963541}
   - component: {fileID: 4667758370162568321}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Polished Player
   m_TagString: Player
   m_Icon: {fileID: 0}

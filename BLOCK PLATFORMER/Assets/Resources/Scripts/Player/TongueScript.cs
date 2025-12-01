@@ -4,6 +4,7 @@ using SaintsField;
 using System.Collections;
 using Unity.VisualScripting;
 using SaintsField.Playa;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TongueScript : MonoBehaviour
 {
@@ -130,7 +131,9 @@ public class TongueScript : MonoBehaviour
         }
         if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw --> throw
         {
-            S.heldBox.GetComponent<Collider2D>().enabled = true;
+            //S.heldBox.GetComponent<Collider2D>().enabled = true;
+            S.heldBox.gameObject.layer = LayerMask.NameToLayer("Box");
+            S.heldBox.GetComponent<Box>().OnThrow();
             S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
             S.heldBox = null;
@@ -143,7 +146,7 @@ public class TongueScript : MonoBehaviour
         else if (input == 0 && S.holdInput == 1 && S.tongueBox != null) // pulling box with tongue
         {
             S.tongueBox.transform.parent = null;
-            S.tongueBox.GetComponent<Collider2D>().enabled = true;
+            //S.tongueBox.GetComponent<Collider2D>().enabled = true;
             S.tongueBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.tongueBox = null;
         }
@@ -197,9 +200,12 @@ public class TongueScript : MonoBehaviour
 
     void HeldBox()
     {
-        S.heldBox.GetComponent<Collider2D>().enabled = false;
-        S.heldBox.rotation = S.hand.rotation;
-        S.heldBox.position = S.hand.position;
+        //S.heldBox.GetComponent<Collider2D>().enabled = false;
+        //S.heldBox.rotation = S.hand.rotation;
+        //S.heldBox.position = S.hand.position;
+        S.heldBox.gameObject.layer = LayerMask.NameToLayer("HeldBox");
+        S.heldBox.GetComponent<Box>().BeingHeld();
+        S.heldBox.GetComponent<Rigidbody2D>().MovePositionAndRotation(S.hand.position, S.hand.rotation);
         S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 0;
     }
 
@@ -249,8 +255,11 @@ public class TongueScript : MonoBehaviour
 
     void BoxToTongueTip(GameObject box)
     {
-        box.GetComponent<Collider2D>().enabled = false;
-        box.transform.rotation = S.hand.rotation;
+        //box.GetComponent<Collider2D>().enabled = false;
+        //box.transform.rotation = S.hand.rotation;
+        box.layer = LayerMask.NameToLayer("HeldBox");
+        box.GetComponent<Box>().OnHold();
+        box.GetComponent<Rigidbody2D>().MoveRotation(S.hand.rotation);
         box.GetComponent<Rigidbody2D>().gravityScale = 0;
         box.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
         box.transform.parent = R.tongueTip;

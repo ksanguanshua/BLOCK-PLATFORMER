@@ -2060,7 +2060,7 @@ Transform:
   m_GameObject: {fileID: 2126798227}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.75, y: 14.25, z: 0}
+  m_LocalPosition: {x: 4.5, y: 14.25, z: 0}
   m_LocalScale: {x: 3, y: 24, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2192,10 +2192,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1889235001124095998, guid: e4c96e90c7981f646a8edbe147d90662, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889235001124095998, guid: e4c96e90c7981f646a8edbe147d90662, type: 3}
       propertyPath: m_LocalPosition.x
       value: 21.25
       objectReference: {fileID: 0}
@@ -2235,10 +2231,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2269174370126126455, guid: e4c96e90c7981f646a8edbe147d90662, type: 3}
-      propertyPath: boxTypes
-      value: 
-      objectReference: {fileID: 1821862410}
     - target: {fileID: 5705987125587957090, guid: e4c96e90c7981f646a8edbe147d90662, type: 3}
       propertyPath: m_Name
       value: Spawner

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1889235001124095998}
   - component: {fileID: 7046320681766023757}
   - component: {fileID: 2269174370126126455}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 14, y: 5, z: 0}
-  m_LocalScale: {x: 3, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 14, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   box:
   - {fileID: 8952094280479633091, guid: ea241be3a2979244fa2de2a43e51f4c3, type: 3}
   - {fileID: 8261550831112202955, guid: 530f320eaf8cf454f9e54e9fb1b660c4, type: 3}
+  - {fileID: 3609162852785639143, guid: e03fa62ceabd1c9418623197b0b51afe, type: 3}
   spawnWidth: 3
   spawnTimeMin: 3
   spawnTimeMax: 3
