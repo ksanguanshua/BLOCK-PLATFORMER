@@ -4,11 +4,13 @@ using UnityEngine.SceneManagement;
 using TMPro;
 public class DeliveryZone : MonoBehaviour
 {
-    [SerializeField] BoxTypes boxTypes;
-    List<BoxTypes.ItemLabel> items = new();
+
+    List<Sprite> items = new();
     int savedItemCount;
 
     List<GameObject> icons = new();
+
+    Animator anim;
 
     [SerializeField] int orderSizeMin;
     [SerializeField] int orderSizeMax;
@@ -20,9 +22,12 @@ public class DeliveryZone : MonoBehaviour
     bool onCooldown;
     bool firstOrder = true;
 
+    bool correctDelivery;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        anim = GetComponent<Animator>();
         CreateOrder();
     }
 
@@ -31,11 +36,10 @@ public class DeliveryZone : MonoBehaviour
     {
         if (savedItemCount != items.Count)
         {
-            ShowOrder();
             savedItemCount = items.Count;
         }
-        
-        CheckOrder();
+
+        ShowOrder();
 
         if (items.Count == 0)
         {
@@ -72,6 +76,7 @@ public class DeliveryZone : MonoBehaviour
         onCooldown = false;
         orderTimer_t = orderTimer;
         int orderSize = Random.Range(orderSizeMin, orderSizeMax);
+        anim.SetBool("isClosed", false);
 
         if (firstOrder) 
         {
@@ -80,28 +85,95 @@ public class DeliveryZone : MonoBehaviour
 
         for (int i = 0; i < orderSize; i++)
         {
-            
-            items.Add((BoxTypes.ItemLabel)Random.Range(0, boxTypes.labelSprites.Length));
+            items.Add(BoxTypes.instance.labelSprites[Random.Range(0, BoxTypes.instance.labelSprites.Length)]);
             GameObject icon = new();
             icons.Add(icon);
         }
     }
 
-    void CheckOrder()
+    public void CheckOrder()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + (Vector3)(Vector2.up * 1.5f), Vector2.one * 3, 0);
+
+        List<Sprite> order = new();
+        List<Sprite> deliveries = new();
+
+        anim.SetBool("isClosed", true);
+
+        foreach (Sprite label in items)
+        {
+            order.Add(label);
+        }
+
         foreach(Collider2D collider in colliders)
         {
             if (collider.TryGetComponent(out Box box))
             {
-                if (items.Contains(box.label))
+                if (collider.TryGetComponent(out SpriteRenderer sr))
                 {
-                    items.Remove(box.label);
-                    Destroy(icons[0]);
-                    icons.RemoveAt(0);
+                    sr.enabled = false;
+                }
+                
+                deliveries.Add(box.labelSprite);
+            }
+        }
+
+        foreach(Sprite label in order)
+        {
+            if (deliveries.Contains(label))
+            {
+                deliveries.Remove(label);
+            }
+            else
+            {
+                correctDelivery = false;
+                return;
+            }
+        }
+
+        if (deliveries.Count == 0)
+        {
+            correctDelivery = true;
+
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.TryGetComponent(out Box box))
+                {
                     Destroy(box.gameObject);
                 }
             }
+        }
+    }
+
+    public void FinishedAnimation()
+    {
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + (Vector3)(Vector2.up * 1.5f), Vector2.one * 3, 0);
+
+        if (!correctDelivery)
+        {
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.TryGetComponent(out Box box))
+                {
+                    if (collider.TryGetComponent(out SpriteRenderer sr))
+                    {
+                        sr.enabled = true;
+                    }
+                }
+            }
+
+            anim.SetBool("isClosed", false);
+        }
+        else
+        {
+            items.Clear();
+
+            foreach(GameObject icon in icons)
+            {
+                Destroy(icon);
+            }
+
+            icons.Clear();
         }
     }
 
@@ -110,16 +182,17 @@ public class DeliveryZone : MonoBehaviour
         for (int i = 0; i < items.Count; i++)
         {
             GameObject icon = icons[i];
-            icon.transform.position = new Vector2(transform.position.x - (items.Count / 2) + ((items.Count + 1) % 2 * 0.5f) + i, transform.position.y + 3);
+            icon.transform.position = new Vector2(transform.position.x - (items.Count / 2) + ((items.Count + 1) % 2 * 0.5f) + i, transform.Find("Icons").position.y);
             
             if (icon.TryGetComponent(out SpriteRenderer sr))
             {
-                sr.sprite = boxTypes.labelSprites[(int)items[i]];
+                sr.sprite = items[i];
                 continue;
             }
 
             sr = icon.gameObject.AddComponent<SpriteRenderer>();
-            sr.sprite = boxTypes.labelSprites[(int)items[i]];
+            sr.sprite = items[i];
+            sr.sortingOrder = 1;
         }
     }
 }

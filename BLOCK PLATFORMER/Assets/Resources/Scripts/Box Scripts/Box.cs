@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 public class Box : MonoBehaviour
 {
-    [SerializeField]
-    public BoxTypes.ItemLabel label;
+    [HideInInspector] public Sprite labelSprite;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SpriteRenderer labelSprite = transform.Find("Label").GetComponent<SpriteRenderer>();
-        labelSprite.sprite = GameObject.Find("Box Types").GetComponent<BoxTypes>().labelSprites[(int)label];
+        SpriteRenderer labelSR = transform.Find("Label").GetComponent<SpriteRenderer>();
+        labelSR.sprite = labelSprite;
     }
 }
