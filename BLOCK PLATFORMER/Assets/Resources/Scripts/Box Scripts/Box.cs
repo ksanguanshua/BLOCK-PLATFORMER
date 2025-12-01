@@ -11,4 +11,27 @@ public class Box : MonoBehaviour
         SpriteRenderer labelSR = transform.Find("Label").GetComponent<SpriteRenderer>();
         labelSR.sprite = labelSprite;
     }
+
+    public virtual void OnHold()
+    {
+
+    }
+    
+    public virtual void BeingHeld()
+    {
+
+    }
+
+    public virtual void OnThrow()
+    {
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (GetComponent<Rigidbody2D>().linearVelocity.magnitude > 5)
+        {
+            AudioManager.instance.PlayBoxBump();
+        }
+    }
 }

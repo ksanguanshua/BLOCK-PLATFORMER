@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MasterTagFolder" id="{5fb9e07a-751a-4f70-b2ef-f6bf33fdc6a5}">
+		<property name="name">
+			<value>Master</value>
+		</property>
+		<relationship name="items">
+			<destination>{beee6a87-c276-49aa-b2c9-0d94b31dad88}</destination>
+			<destination>{8e8f90e8-8839-4f2e-8a24-6669c131329d}</destination>
+			<destination>{3f738f8f-df3f-4435-97c4-314b96a58f86}</destination>
+			<destination>{2112dd59-191d-47b7-bbc9-33d9674cc1d6}</destination>
+			<destination>{d91a444d-c2b2-475b-b4af-adb77588037c}</destination>
+			<destination>{76ca7029-2e19-45b2-bb26-8b94e66ba468}</destination>
+			<destination>{c5b40ff3-c1cf-49f1-af54-6100783ccf39}</destination>
+			<destination>{4c5033a0-084c-4b6f-8a16-8074326f8d14}</destination>
+			<destination>{0f6aab2a-c7c7-4b36-8860-bf092e081e5f}</destination>
+		</relationship>
+	</object>
+	<object class="Tag" id="{beee6a87-c276-49aa-b2c9-0d94b31dad88}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{8e8f90e8-8839-4f2e-8a24-6669c131329d}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{3f738f8f-df3f-4435-97c4-314b96a58f86}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{2112dd59-191d-47b7-bbc9-33d9674cc1d6}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{d91a444d-c2b2-475b-b4af-adb77588037c}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{76ca7029-2e19-45b2-bb26-8b94e66ba468}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{c5b40ff3-c1cf-49f1-af54-6100783ccf39}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{4c5033a0-084c-4b6f-8a16-8074326f8d14}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+	<object class="Tag" id="{0f6aab2a-c7c7-4b36-8860-bf092e081e5f}">
+		<property name="name">
+			<value>placeholder</value>
+		</property>
+	</object>
+</objects>

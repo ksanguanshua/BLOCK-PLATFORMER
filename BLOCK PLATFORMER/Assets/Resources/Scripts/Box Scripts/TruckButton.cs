@@ -11,6 +11,8 @@ public class TruckButton : MonoBehaviour
         {
             deliveryZone.CheckOrder();
             sr.enabled = false;
+
+            AudioManager.instance.PlayButtonClick();
         }
     }
 
@@ -19,6 +21,8 @@ public class TruckButton : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             sr.enabled = true;
+
+            AudioManager.instance.PlayButtonClick();
         }
     }
 }
