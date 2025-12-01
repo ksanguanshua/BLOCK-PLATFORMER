@@ -26,4 +26,12 @@ public class Box : MonoBehaviour
     {
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (GetComponent<Rigidbody2D>().linearVelocity.magnitude > 5)
+        {
+            AudioManager.instance.PlayBoxBump();
+        }
+    }
 }

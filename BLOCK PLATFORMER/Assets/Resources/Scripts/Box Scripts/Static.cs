@@ -8,8 +8,13 @@ public class Static : Box
     public override void OnThrow()
     {
         base.OnThrow();
-        CancelInvoke("BecomeStatic");
         Invoke("BecomeStatic", throwTime);
+    }
+
+    public override void OnHold()
+    {
+        base.OnHold();
+        CancelInvoke("BecomeStatic");
     }
 
     void BecomeStatic()

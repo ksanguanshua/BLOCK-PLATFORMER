@@ -177,6 +177,11 @@ public class DeliveryZone : MonoBehaviour
         }
     }
 
+    void PlayCloseSound()
+    {
+        AudioManager.instance.PlayDoorClose(); 
+    }
+
     void ShowOrder()
     {
         for (int i = 0; i < items.Count; i++)

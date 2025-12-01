@@ -127,6 +127,8 @@ public class TongueScript : MonoBehaviour
                 float angle = Mathf.Atan2(S.lastFacingDir.y, S.lastFacingDir.x) * Mathf.Rad2Deg;
                 PSthrow.transform.rotation = Quaternion.Euler(0, 0, angle);
                 R.movement.R.particleManager.PlayParticle("PSTongueThrow");
+
+                AudioManager.instance.PlayTongueOut();
             }
         }
         if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw --> throw
@@ -149,6 +151,8 @@ public class TongueScript : MonoBehaviour
             //S.tongueBox.GetComponent<Collider2D>().enabled = true;
             S.tongueBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.tongueBox = null;
+
+            AudioManager.instance.PlayTongueIn();
         }
         S.holdInput = input;
     }
@@ -302,6 +306,8 @@ public class TongueScript : MonoBehaviour
             Grab(S.tongueBox);
             S.tongueBox.transform.parent = null;
             S.tongueBox = null;
+
+            AudioManager.instance.PlayBoxHit();
         }
         else if (S.tonguePulling == true)
         {
@@ -309,6 +315,8 @@ public class TongueScript : MonoBehaviour
             R.movement.M.accelerationAir = M.launchAccel;
             R.movement.M.deccelerationAir = M.launchDeccel;
             S.tonguePulling = false;
+
+            AudioManager.instance.PlayDash();
         }
         S.canTurn = true;
         R.anim.SetBool("lookNEUTRAL", false);
