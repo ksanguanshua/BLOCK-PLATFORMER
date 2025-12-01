@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class BoxSpawner : MonoBehaviour
 {
-    [SerializeField] GameObject box;
+    [SerializeField] GameObject[] box;
     [SerializeField] int spawnWidth;
     [SerializeField] float spawnTimeMin, spawnTimeMax;
 
@@ -30,7 +30,7 @@ public class BoxSpawner : MonoBehaviour
     void SpawnBox()
     {
         Vector2 spawnPoint = new Vector2(Mathf.RoundToInt(Random.Range(transform.position.x - spawnWidth / 2, transform.position.x + spawnWidth / 2)), transform.position.y);
-        GameObject inst = Instantiate(box, spawnPoint, Quaternion.identity);
+        GameObject inst = Instantiate(box[Random.Range(0, box.Length)], spawnPoint, Quaternion.identity);
         Box boxInst = inst.GetComponent<Box>();
 
         int randomIndex = Random.Range(0, labelBag.Count);
