@@ -32,6 +32,7 @@ public class TongueScript : MonoBehaviour
         [LayoutStart("Box Holding", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public float holdInput;
         [SerializeField][ReadOnly] public Vector2 lastFacingDir;
+        [SerializeField][ReadOnly] public float lastFacingDirLR;
         [SerializeField][ReadOnly] public bool canTurn;
         [SerializeField][ReadOnly] public Transform heldBox;
         [SerializeField][ReadOnly] public GameObject tongueBox;
@@ -133,11 +134,18 @@ public class TongueScript : MonoBehaviour
         }
         if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw --> throw
         {
-            //S.heldBox.GetComponent<Collider2D>().enabled = true;
+            S.heldBox.GetComponent<Collider2D>().enabled = true;
             S.heldBox.gameObject.layer = LayerMask.NameToLayer("Box");
             S.heldBox.GetComponent<Box>().OnThrow();
             S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
-            S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
+            if (S.lastFacingDir.y < 0 && R.movement.S.isGrounded)
+            {
+
+            }
+            else
+            {
+                S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
+            }
             S.heldBox = null;
 
             GameObject PSthrow = R.movement.R.particleManager.GetParticleSystem("PSThrow").gameObject;
@@ -164,19 +172,27 @@ public class TongueScript : MonoBehaviour
             S.lastFacingDir = R.movement.S.movementInput;
             if (R.movement.S.movementInput.x < 0)
             {
+                S.lastFacingDirLR = -1;
                 R.anim.SetBool("lookRight", false);
                 R.anim.SetBool("moving", true);
                 R.movement.R.particleManager.StartPlay("PSDustWalk");
             }
             else if (R.movement.S.movementInput.x > 0)
             {
+                S.lastFacingDirLR = 1;
                 R.anim.SetBool("lookRight", true);
                 R.anim.SetBool("moving", true);
                 R.movement.R.particleManager.StartPlay("PSDustWalk");
             }
         }
-
-        S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)S.lastFacingDir, M.handLerpForce);
+        if (S.lastFacingDir.y < 0 && S.lastFacingDir.x == 0 && R.movement.S.isGrounded)
+        {
+            S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)(S.lastFacingDir * Vector2.up * 0 + Vector2.right * S.lastFacingDirLR), M.handLerpForce);
+        }
+        else
+        {
+            S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)S.lastFacingDir, M.handLerpForce);
+        }
         R.anim.SetFloat("inputX", S.lastFacingDir.x);
         R.anim.SetFloat("inputY", S.lastFacingDir.y);
         R.anim.SetFloat("inputHoldY", R.movement.S.movementInput.y);
