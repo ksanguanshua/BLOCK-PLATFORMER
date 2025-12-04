@@ -365,6 +365,14 @@ public class MovementPlatformer2D : Movement
             }
             else
             {
+                if (S.isGrounded)
+                {
+                    S.prevFrameGrounded = true;
+                }
+                else
+                {
+                    S.prevFrameGrounded = false;
+                }
                 S.isGrounded = false;
                 R.anim.SetBool("Grounded", false);
             }
@@ -385,7 +393,7 @@ public class MovementPlatformer2D : Movement
                 S.acceleration = M.acceleration;
                 S.decceleration = M.decceleration;
             }
-            else if (S.acceleration == M.acceleration)
+            else
             {
                 S.movementSpeed = M.movementSpeedAir;
                 S.acceleration = M.accelerationAir;

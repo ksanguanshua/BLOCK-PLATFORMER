@@ -72,6 +72,7 @@ public abstract class Movement : MonoBehaviour
         [SerializeField] public State state;
         [SerializeField][ReadOnly] public Vector2 facing;
         [SerializeField][ReadOnly] public bool canTurn;
+        [SerializeField][ReadOnly] public bool prevFrameGrounded;
         [SerializeField][ReadOnly] public bool isGrounded;
         [ShowIf(nameof(M.JUMP_ABLE), nameof(M.MULT_JUMP))][ReadOnly] public int amountOfJumps;
         [ShowIf(nameof(M.JUMP_ABLE), nameof(M.QUICK_FALL_OPTION))][ReadOnly] public bool canQuickFall;
