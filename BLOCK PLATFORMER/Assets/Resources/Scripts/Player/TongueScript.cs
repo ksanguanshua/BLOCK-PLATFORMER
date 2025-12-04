@@ -204,9 +204,9 @@ public class TongueScript : MonoBehaviour
 
     void HeldBox()
     {
-        //S.heldBox.GetComponent<Collider2D>().enabled = false;
-        //S.heldBox.rotation = S.hand.rotation;
-        //S.heldBox.position = S.hand.position;
+        S.heldBox.GetComponent<Collider2D>().enabled = false;
+        S.heldBox.rotation = S.hand.rotation;
+        S.heldBox.position = S.hand.position;
         S.heldBox.gameObject.layer = LayerMask.NameToLayer("HeldBox");
         S.heldBox.GetComponent<Box>().BeingHeld();
         S.heldBox.GetComponent<Rigidbody2D>().MovePositionAndRotation(S.hand.position, S.hand.rotation);
@@ -278,11 +278,11 @@ public class TongueScript : MonoBehaviour
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.linearVelocity = Vector2.zero;
         rigidbody2D.gravityScale = 0;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds((float)(M.tongueShootTime / 4f));
         R.anim.SetBool("lookNEUTRAL", true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds((float)(M.tongueShootTime / 2f));
         S.tongueRetracting = true;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds((float)(M.tongueShootTime / 4f));
         if (S.tongueBox != null)
             BoxToTongueTip(S.tongueBox);
         rigidbody2D.gravityScale = 1;
@@ -311,7 +311,7 @@ public class TongueScript : MonoBehaviour
         }
         else if (S.tonguePulling == true)
         {
-            GetComponent<Rigidbody2D>().AddForce(S.lastFacingDir * M.tonguePullForce, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(S.lastFacingDir * M.tonguePullForce * (Vector2.up * 0.5f + Vector2.right), ForceMode2D.Impulse);
             R.movement.M.accelerationAir = M.launchAccel;
             R.movement.M.deccelerationAir = M.launchDeccel;
             S.tonguePulling = false;

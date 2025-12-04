@@ -33,6 +33,8 @@ public abstract class Movement : MonoBehaviour
         [SerializeField][RichLabel("Can Jump?")] public bool JUMP_ABLE;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField] public float jumpForce;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField] public Vector2 baseGroundNormal;
+        [ShowIf(nameof(JUMP_ABLE))][SerializeField] public Vector2 groundCheckLocation;
+        [ShowIf(nameof(JUMP_ABLE))][SerializeField] public Vector2 groundCheckSize;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField][RichLabel("Multiple Jumps?")] public bool MULT_JUMP;
         [ShowIf(nameof(JUMP_ABLE), nameof(MULT_JUMP))][SerializeField] public int maxAmountOfJumpsInAir;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField][RichLabel("Variable Jump Height?")] public bool QUICK_FALL_OPTION; // the player CHOOSES quickfall when releasing jump button
