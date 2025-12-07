@@ -5,16 +5,21 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     Transform target;
 
-    float camX;
-    float camY;
-    float camZ;
+    [SerializeField] float camX;
+    [SerializeField] float camY;
+    [SerializeField] float camZ;
+
+    [SerializeField] Vector2 maxBound;
+    [SerializeField] Vector2 minBound;
 
     [SerializeField] float lerpSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        camX = transform.position.x;
+        camY = transform.position.y;
+        camZ = transform.position.z;
     }
 
     // Update is called once per frame
@@ -22,8 +27,8 @@ public class CameraController : MonoBehaviour
     {
         if (target != null)
         {
-            camX = Mathf.Lerp(camX, target.position.x, lerpSpeed);
+            camX = Mathf.Lerp(camX, Mathf.Clamp(target.position.x, minBound.x, maxBound.x), lerpSpeed);
             transform.position = new Vector3(camX, camY, transform.position.z);
-        }   
+        }
     }
 }
