@@ -32,6 +32,7 @@ public class TongueScript : MonoBehaviour
         [LayoutStart("Box Holding", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public float holdInput;
         [SerializeField][ReadOnly] public Vector2 lastFacingDir;
+        [SerializeField][ReadOnly] public float lastFacingDirLR;
         [SerializeField][ReadOnly] public bool canTurn;
         [SerializeField][ReadOnly] public Transform heldBox;
         [SerializeField][ReadOnly] public GameObject tongueBox;
@@ -91,7 +92,7 @@ public class TongueScript : MonoBehaviour
         R.anim.SetBool("grounded", R.movement.S.isGrounded);
         R.anim.SetFloat("velocityY", R.movement.R.rb.linearVelocityY);
 
-        if (R.movement.S.movementInput.y >= 0)
+        if (R.movement.S.movementInput.y >= 0 && R.movement.S.isGrounded)
         {
             R.movement.M.accelerationAir = M.baseAccel;
             R.movement.M.deccelerationAir = M.baseDeccel;
@@ -118,7 +119,7 @@ public class TongueScript : MonoBehaviour
     {
         if (!S.tongueOut)
         {
-            if (input == 1 && S.holdInput == 0)
+            if (input == 1 && S.holdInput == 0) // throw the tongue
             {
                 R.anim.SetTrigger("tongueThrow");
                 ThrowTongue(S.lastFacingDir);
@@ -133,22 +134,36 @@ public class TongueScript : MonoBehaviour
         }
         if (input == 0 && S.holdInput == 1 && S.heldBox != null) // holding box and ready to throw --> throw
         {
-            //S.heldBox.GetComponent<Collider2D>().enabled = true;
+            //prep the box GameObject
+            S.heldBox.GetComponent<Collider2D>().enabled = true;
             S.heldBox.gameObject.layer = LayerMask.NameToLayer("Box");
             S.heldBox.GetComponent<Box>().OnThrow();
             S.heldBox.GetComponent<Rigidbody2D>().gravityScale = 2;
-            S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
+
+            //If the player wants to put the box down
+            if (S.lastFacingDir.y < 0 && R.movement.S.isGrounded)
+            {
+
+            }
+            else // else, throw the box
+            {
+                S.heldBox.GetComponent<Rigidbody2D>().AddForce(new Vector2(S.lastFacingDir.x, S.lastFacingDir.y + 1) * M.throwForce, ForceMode2D.Impulse);
+            }
+
+            //box is RELEASED
             S.heldBox = null;
 
+            //Particle system
             GameObject PSthrow = R.movement.R.particleManager.GetParticleSystem("PSThrow").gameObject;
             float angle = Mathf.Atan2(S.lastFacingDir.y + 1, S.lastFacingDir.x) * Mathf.Rad2Deg;
             PSthrow.transform.rotation = Quaternion.Euler(0, 0, angle);
             R.movement.R.particleManager.PlayParticle("PSThrow");
         }
-        else if (input == 0 && S.holdInput == 1 && S.tongueBox != null) // pulling box with tongue
+        else if (input == 0 && S.holdInput == 1 && S.tongueBox != null) // pulling box with tongue (interupted by releasing) --> leaves box where it is on ground
         {
+            //prep box GameObject
             S.tongueBox.transform.parent = null;
-            //S.tongueBox.GetComponent<Collider2D>().enabled = true;
+            S.tongueBox.GetComponent<Collider2D>().enabled = true;
             S.tongueBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.tongueBox = null;
 
@@ -159,24 +174,70 @@ public class TongueScript : MonoBehaviour
 
     void HandMovement()
     {
+        //basic previous looking location manager
         if (R.movement.S.movementInput != Vector2.zero && S.canTurn)
         {
             S.lastFacingDir = R.movement.S.movementInput;
             if (R.movement.S.movementInput.x < 0)
             {
+                S.lastFacingDirLR = -1;
                 R.anim.SetBool("lookRight", false);
                 R.anim.SetBool("moving", true);
                 R.movement.R.particleManager.StartPlay("PSDustWalk");
             }
             else if (R.movement.S.movementInput.x > 0)
             {
+                S.lastFacingDirLR = 1;
                 R.anim.SetBool("lookRight", true);
                 R.anim.SetBool("moving", true);
                 R.movement.R.particleManager.StartPlay("PSDustWalk");
             }
         }
 
-        S.hand.position = Vector2.Lerp(S.hand.position, transform.position + (Vector3)S.lastFacingDir, M.handLerpForce);
+        Vector2 direction = transform.position + (Vector3)S.lastFacingDir;
+        float boxSize = 0.6f;
+
+        // filter for clipping 
+        if (Physics2D.OverlapBox(direction, Vector2.one * boxSize, 0, R.layerGround)) // WE GOT AN OVERLAP
+        {
+            if (S.lastFacingDir.y < 0) // below the player
+            {
+                if (!Physics2D.OverlapBox((Vector2)transform.position + Vector2.right * S.lastFacingDirLR, Vector2.one * boxSize, 0, R.layerGround))
+                {
+                    direction = (Vector2)transform.position + Vector2.right * S.lastFacingDirLR;
+                }
+                else if (!Physics2D.OverlapBox((Vector2)transform.position + Vector2.up, Vector2.one * boxSize, 0, R.layerGround))
+                {
+                    direction = (Vector2)transform.position + Vector2.up;
+                }
+            }
+            else if (S.lastFacingDir.y > 0) // above of the player
+            {
+                if (!Physics2D.OverlapBox((Vector2)transform.position + Vector2.right * S.lastFacingDirLR, Vector2.one * boxSize, 0, R.layerGround))
+                {
+                    direction = (Vector2)transform.position + Vector2.right * S.lastFacingDirLR;
+                }
+                else if (!Physics2D.OverlapBox((Vector2)transform.position + Vector2.down, Vector2.one * boxSize, 0, R.layerGround))
+                {
+                    direction = (Vector2)transform.position + Vector2.down;
+                }
+            }
+            else if (S.lastFacingDir.x != 0) // front of the player
+            {
+                if (!Physics2D.OverlapBox((Vector2)transform.position + Vector2.up, Vector2.one * boxSize, 0, R.layerGround))
+                {
+                    direction = (Vector2)transform.position + Vector2.up;
+                }
+                else if (!Physics2D.OverlapBox((Vector2)transform.position + Vector2.down, Vector2.one * boxSize, 0, R.layerGround))
+                {
+                    direction = (Vector2)transform.position + Vector2.down;
+                }
+            }
+        }
+
+        S.hand.position = Vector2.Lerp(S.hand.position, direction, M.handLerpForce);
+
+        //setting anim values for animation
         R.anim.SetFloat("inputX", S.lastFacingDir.x);
         R.anim.SetFloat("inputY", S.lastFacingDir.y);
         R.anim.SetFloat("inputHoldY", R.movement.S.movementInput.y);
@@ -204,9 +265,9 @@ public class TongueScript : MonoBehaviour
 
     void HeldBox()
     {
-        //S.heldBox.GetComponent<Collider2D>().enabled = false;
-        //S.heldBox.rotation = S.hand.rotation;
-        //S.heldBox.position = S.hand.position;
+        S.heldBox.GetComponent<Collider2D>().enabled = false;
+        S.heldBox.rotation = S.hand.rotation;
+        S.heldBox.position = S.hand.position;
         S.heldBox.gameObject.layer = LayerMask.NameToLayer("HeldBox");
         S.heldBox.GetComponent<Box>().BeingHeld();
         S.heldBox.GetComponent<Rigidbody2D>().MovePositionAndRotation(S.hand.position, S.hand.rotation);
@@ -259,8 +320,8 @@ public class TongueScript : MonoBehaviour
 
     void BoxToTongueTip(GameObject box)
     {
-        //box.GetComponent<Collider2D>().enabled = false;
-        //box.transform.rotation = S.hand.rotation;
+        box.GetComponent<Collider2D>().enabled = false;
+        box.transform.rotation = S.hand.rotation;
         box.layer = LayerMask.NameToLayer("HeldBox");
         box.GetComponent<Box>().OnHold();
         box.GetComponent<Rigidbody2D>().MoveRotation(S.hand.rotation);
@@ -270,6 +331,7 @@ public class TongueScript : MonoBehaviour
         box.transform.localPosition = Vector2.zero;
     }
 
+    // IN REAL TIME TONGUE EXTENSION AND RETRACTION
     IEnumerator TongueRetract()
     {
         R.movement.S.state = Movement.State.Inactive;
@@ -278,11 +340,11 @@ public class TongueScript : MonoBehaviour
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.linearVelocity = Vector2.zero;
         rigidbody2D.gravityScale = 0;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds((float)(M.tongueShootTime / 4f));
         R.anim.SetBool("lookNEUTRAL", true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds((float)(M.tongueShootTime / 2f));
         S.tongueRetracting = true;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds((float)(M.tongueShootTime / 4f));
         if (S.tongueBox != null)
             BoxToTongueTip(S.tongueBox);
         rigidbody2D.gravityScale = 1;
@@ -311,7 +373,7 @@ public class TongueScript : MonoBehaviour
         }
         else if (S.tonguePulling == true)
         {
-            GetComponent<Rigidbody2D>().AddForce(S.lastFacingDir * M.tonguePullForce, ForceMode2D.Impulse);
+            GetComponent<Rigidbody2D>().AddForce(S.lastFacingDir * M.tonguePullForce * (Vector2.up * 0.75f + Vector2.right), ForceMode2D.Impulse);
             R.movement.M.accelerationAir = M.launchAccel;
             R.movement.M.deccelerationAir = M.launchDeccel;
             S.tonguePulling = false;

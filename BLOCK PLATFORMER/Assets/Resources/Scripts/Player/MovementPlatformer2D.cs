@@ -162,8 +162,6 @@ public class MovementPlatformer2D : Movement
                     S.canQuickFall = true;
                     BasicJump();
                     S.coyoteTimeActive = -1;
-
-                    AudioManager.instance.PlayJump();
                 }
 
                 else if (M.JUMP_CUE)
@@ -354,7 +352,8 @@ public class MovementPlatformer2D : Movement
         }
         else
         {
-            if (Physics2D.Raycast(transform.position, Vector2.down, 0.7f, R.layerGround))
+            //if (Physics2D.Raycast(transform.position, Vector2.down, 0.7f, R.layerGround))
+            if (Physics2D.OverlapBox((Vector3)M.groundCheckLocation + transform.position, M.groundCheckSize, 0f, R.layerGround))
             {
                 if (!S.isGrounded)
                 {
@@ -366,6 +365,14 @@ public class MovementPlatformer2D : Movement
             }
             else
             {
+                if (S.isGrounded)
+                {
+                    S.prevFrameGrounded = true;
+                }
+                else
+                {
+                    S.prevFrameGrounded = false;
+                }
                 S.isGrounded = false;
                 R.anim.SetBool("Grounded", false);
             }
@@ -444,4 +451,10 @@ public class MovementPlatformer2D : Movement
         }
     }
     #endregion
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube((Vector3)M.groundCheckLocation + transform.position, M.groundCheckSize);
+    }
 }
