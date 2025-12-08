@@ -289,11 +289,13 @@ public class MainMenu : MonoBehaviour
         {
             ClosePanel("PauseMenu");
             currentlyPaused = false;
+            Time.timeScale = 1;
         }
         else if (currentlyPaused == false)
         {
             OpenPanel("PauseMenu");
             currentlyPaused = true;
+            Time.timeScale = 0;
         }
     }
 }
