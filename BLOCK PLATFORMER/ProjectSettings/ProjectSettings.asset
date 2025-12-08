@@ -788,8 +788,8 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: BLOCK PLATFORMER
-  metroPackageVersion: 
+  metroPackageName: BLOCKPLATFORMER
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -797,7 +797,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: BLOCK PLATFORMER
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: BLOCK PLATFORMER
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
