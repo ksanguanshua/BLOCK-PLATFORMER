@@ -21,12 +21,12 @@ public class Platformer2DControllerBase : MonoBehaviour
     }
     public void OnJump(InputValue value)
     {
-        print(value.Get<float>());
+        //print(value.Get<float>());
         movement.JumpInput(value.Get<float>());
     }
     public void OnAttack(InputValue value)
     {
-        print(value.Get<float>());
+        //print(value.Get<float>());
         tongueScript.GrabInput(value.Get<float>());
     }
     #endregion

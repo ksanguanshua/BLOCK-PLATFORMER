@@ -24,11 +24,12 @@ public class DeliveryZone : MonoBehaviour
 
     bool correctDelivery;
 
+    GameManager.GameState currentGameState;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         anim = GetComponent<Animator>();
-        CreateOrder();
     }
 
     // Update is called once per frame
@@ -39,35 +40,20 @@ public class DeliveryZone : MonoBehaviour
             savedItemCount = items.Count;
         }
 
+        StateChanged();
         ShowOrder();
 
-        if (items.Count == 0)
+        if (GameManager.instance.gameState == GameManager.GameState.deliver)
         {
-            if (!onCooldown)
+            if (items.Count == 0)
             {
-                onCooldown = true;
-                firstOrder = false;
-                Invoke("CreateOrder", orderCooldown);
+                if (!onCooldown)
+                {
+                    onCooldown = true;
+                    firstOrder = false;
+                    Invoke("CreateOrder", orderCooldown);
+                }
             }
-
-            transform.Find("Timer").GetComponent<TextMeshPro>().text = "";
-        }
-        else
-        {
-             OrderTimer();
-             transform.Find("Timer").GetComponent<TextMeshPro>().text = Mathf.Round(orderTimer_t).ToString();
-        }
-    }
-
-    void OrderTimer()
-    {
-        if (orderTimer_t > 0)
-        {
-            orderTimer_t -= Time.deltaTime;
-        }
-        else
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -80,12 +66,15 @@ public class DeliveryZone : MonoBehaviour
 
         if (firstOrder) 
         {
-            orderSize = 2;
+            orderSize = 1;
         }
 
         for (int i = 0; i < orderSize; i++)
         {
-            items.Add(BoxTypes.instance.labelSprites[Random.Range(0, BoxTypes.instance.labelSprites.Length)]);
+            Sprite randomLabel = BoxTypes.instance.createdBoxes[Random.Range(0, BoxTypes.instance.createdBoxes.Count)];
+            items.Add(randomLabel);
+            BoxTypes.instance.createdBoxes.Remove(randomLabel);
+
             GameObject icon = new();
             icons.Add(icon);
         }
@@ -93,6 +82,11 @@ public class DeliveryZone : MonoBehaviour
 
     public void CheckOrder()
     {
+        if (items.Count == 0)
+        {
+            return;
+        }
+
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + (Vector3)(Vector2.up * 1.5f), Vector2.one * 3, 0);
 
         List<Sprite> order = new();
@@ -109,11 +103,13 @@ public class DeliveryZone : MonoBehaviour
         {
             if (collider.TryGetComponent(out Box box))
             {
+
                 if (collider.TryGetComponent(out SpriteRenderer sr))
                 {
                     sr.enabled = false;
                 }
-                
+
+                collider.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
                 deliveries.Add(box.labelSprite);
             }
         }
@@ -134,6 +130,7 @@ public class DeliveryZone : MonoBehaviour
         if (deliveries.Count == 0)
         {
             correctDelivery = true;
+            GameManager.instance.CompletedOrder(items.Count);
 
             foreach (Collider2D collider in colliders)
             {
@@ -148,6 +145,11 @@ public class DeliveryZone : MonoBehaviour
     public void FinishedAnimation()
     {
         Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position + (Vector3)(Vector2.up * 1.5f), Vector2.one * 3, 0);
+
+        if (GameManager.instance.gameState != GameManager.GameState.deliver)
+        {
+            return;
+        }
 
         if (!correctDelivery)
         {
@@ -198,6 +200,42 @@ public class DeliveryZone : MonoBehaviour
             sr = icon.gameObject.AddComponent<SpriteRenderer>();
             sr.sprite = items[i];
             sr.sortingOrder = 1;
+        }
+    }
+
+    void StateChanged()
+    {
+        if (GameManager.instance.gameState != currentGameState)
+        {
+            CancelInvoke();
+
+            switch (GameManager.instance.gameState)
+            {
+                case GameManager.GameState.tutorial:
+                    break;
+                case GameManager.GameState.organize:
+
+                    anim.SetBool("isClosed", true);
+
+                    items.Clear();
+                    foreach (GameObject icon in icons)
+                    {
+                        Destroy(icon);
+                    }
+                    icons.Clear();
+
+                    break;
+                case GameManager.GameState.deliver:
+
+                    anim.SetBool("isClosed", false);
+
+                    CreateOrder();
+                    break;
+                case GameManager.GameState.breakTime:
+                    break;
+            }
+
+            currentGameState = GameManager.instance.gameState;
         }
     }
 }
