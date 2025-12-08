@@ -12,4 +12,9 @@ public class LevelInfo : MonoBehaviour
     {
         instance = this;
     }
+
+    private void Start()
+    {
+        GameManager.instance.SetUpState(GameManager.GameState.setup);
+    }
 }

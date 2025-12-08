@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 60
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
   m_sharedMaterial: {fileID: -4754391401335233577, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: $0
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
   m_sharedMaterial: {fileID: -4754391401335233577, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ORGANIZE
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
   m_sharedMaterial: {fileID: -4754391401335233577, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
@@ -482,8 +482,6 @@ MonoBehaviour:
   phaseStart: {fileID: 3962946996989095658}
   orderTracker: {fileID: 5154250713428634883}
   cash: {fileID: 3676462362966631878}
-  totalWaves: 3
-  ordersToComplete: 3
 --- !u!1 &5950623396758540522
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,7 +652,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'ORDERS LEFT: 3'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}
   m_sharedMaterial: {fileID: -4754391401335233577, guid: a384e0e5e5f531b4c8df6357418ce245, type: 2}

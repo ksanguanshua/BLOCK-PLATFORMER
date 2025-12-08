@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int currentWave { get; private set; }
 
     int playerCash;
+    int cashMadeThisShift;
 
     bool startTimer;
 
@@ -58,21 +59,20 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        phaseTimer_t = phaseTimer;
-        SetUpState(GameState.organize);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         StateHandler();
-        TimerText();
         CashText();
     }
 
-    void TimerText()
+    public void ChangeScene(string scene)
     {
-        timer.text = Mathf.RoundToInt(phaseTimer_t).ToString();
+        SceneManager.LoadScene(scene);
+        SetUpState(GameState.setup);
     }
 
     void CashText()
@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
     {
         completedOrders++;
         playerCash += size * 50;
+        cashMadeThisShift += size * 50;
         int ordersLeft = ordersToComplete - completedOrders;
 
         if (ordersLeft > 0)
@@ -120,6 +121,7 @@ public class GameManager : MonoBehaviour
         else if (ordersLeft < 0)
         {
             playerCash += -ordersLeft * 50;
+            cashMadeThisShift += -ordersLeft * 50;
         }
 
         Debug.Log("Completed Orders: " + completedOrders.ToString());
@@ -145,6 +147,11 @@ public class GameManager : MonoBehaviour
                 if (startTimer)
                 {
                     PhaseTimer(GameState.deliver);
+                    timer.text = Mathf.RoundToInt(phaseTimer_t).ToString();
+                }
+                else
+                {
+                    timer.text = "";
                 }
 
                 break;
@@ -154,6 +161,11 @@ public class GameManager : MonoBehaviour
                 if (startTimer)
                 {
                     PhaseTimer(GameState.organize);
+                    timer.text = Mathf.RoundToInt(phaseTimer_t).ToString();
+                }
+                else
+                {
+                    timer.text = "";
                 }
 
                 break;
@@ -174,8 +186,14 @@ public class GameManager : MonoBehaviour
 
             case GameState.setup:
 
-                totalWaves = LevelInfo.instance.waves;
-                currentWave = 0;
+                if (LevelInfo.instance != null)
+                {
+                    totalWaves = LevelInfo.instance.waves;
+                    currentWave = 0;
+                    phaseTimer_t = phaseTimer;
+                    startTimer = false;
+                    SetUpState(GameState.organize);
+                }
 
                 break;
 
@@ -199,6 +217,8 @@ public class GameManager : MonoBehaviour
             case GameState.breakTime:
 
                 Debug.Log("BREAK TIME");
+                
+                startTimer = false;
 
                 break;
         }
@@ -222,7 +242,13 @@ public class GameManager : MonoBehaviour
 
                     if (completedOrders < ordersToComplete)
                     {
-                        Debug.Log("FAILED WAVE");
+                        StartCoroutine(ShowPhase("YOU'RE FIRED!"));
+                        playerCash -= cashMadeThisShift;
+                        Invoke("ShiftLost", 3);
+
+                        SetUpState(GameState.breakTime);
+
+                        return;
                     }
                     else
                     {
@@ -232,7 +258,11 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
+                            StartCoroutine(ShowPhase("SHIFT COMPLETED!"));
+                            Invoke("ShiftWon", 3);
+
                             SetUpState(GameState.breakTime);
+
                             return;
                         }
                     }
@@ -248,6 +278,18 @@ public class GameManager : MonoBehaviour
 
             SetUpState(state);
         }
+    }
+
+    void ShiftLost()
+    {
+        StopAllCoroutines();
+        ChangeScene("Break Room");
+    }
+
+    void ShiftWon()
+    {
+        StopAllCoroutines();
+        ChangeScene("Break Room");
     }
 }
 
