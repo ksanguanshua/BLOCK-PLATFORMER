@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,7 +16,6 @@ public class MainMenu : MonoBehaviour
 
         public GameObject panelObject;
         public List<GameObject> interactables;
-
         public List<GameObject> openButtons;
         public List<GameObject> closeButtons;
         public List<string> coPanels;
@@ -25,7 +25,8 @@ public class MainMenu : MonoBehaviour
     }
 
     public string playSceneName;
-
+    public bool pause;
+    public bool currentlyPaused;
     public List<MenuPanel> panels;
     public List<Slider> sliders;
 
@@ -42,14 +43,21 @@ public class MainMenu : MonoBehaviour
             SetInteractableList(p.interactables, false);
         }
 
-        // Enable the "MainMenu" panel automatically
-        MenuPanel home = GetPanel("MainMenu");
-        if (home != null)
+        if (pause)
         {
-            if (home.panelObject != null)
-                home.panelObject.SetActive(true);
 
-            SetInteractableList(home.interactables, true);
+        }
+        else
+        {
+            // Enable the "MainMenu" panel automatically
+            MenuPanel home = GetPanel("MainMenu");
+            if (home != null)
+            {
+                if (home.panelObject != null)
+                    home.panelObject.SetActive(true);
+
+                SetInteractableList(home.interactables, true);
+            }
         }
     }
 
@@ -74,6 +82,11 @@ public class MainMenu : MonoBehaviour
         {
             Application.Quit();
             return;
+        }
+
+        if (pause && btnName == "Resume")
+        {
+            Pause();
         }
         // --------------------------------------------------------
 
@@ -236,22 +249,51 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         SlideChecker(); // you could refactor for onvaluechange but IDK how that unity event works
+        if (pause && Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
     }
 
     void SlideChecker()
     {
-        foreach (Slider s in sliders)
+        if (sliders.Count > 0)
         {
-            if (s.name == "Music")
+            foreach (Slider s in sliders)
             {
-                float value = s.value;
-                // HEY PING CAN YOU WRAP THIS FOR FMOD
+                if (s != null)
+                {
+                    if (s.name == "Music")
+                    {
+                        float value = s.value;
+                        // HEY PING CAN YOU WRAP THIS FOR FMOD
+                    }
+                    else if (s.name == "SFX")
+                    {
+                        float value = s.value;
+                        // HEY PING CAN YOU WRAP THIS FOR FMOD
+                    }
+                }
             }
-            else if (s.name == "SFX")
-            {
-                float value = s.value;
-                // HEY PING CAN YOU WRAP THIS FOR FMOD
-            }
+        }
+    }
+
+    public void OnPause(InputValue value)
+    {
+        print("heehee");
+    }
+
+    public void Pause()
+    {
+        if (currentlyPaused == true)
+        {
+            ClosePanel("PauseMenu");
+            currentlyPaused = false;
+        }
+        else if (currentlyPaused == false)
+        {
+            OpenPanel("PauseMenu");
+            currentlyPaused = true;
         }
     }
 }
