@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BoxTypes : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class BoxTypes : MonoBehaviour
 
     [SerializeField]
     public Sprite[] labelSprites;
+
+    public List<Sprite> createdBoxes = new();
 
     private void Awake()
     {

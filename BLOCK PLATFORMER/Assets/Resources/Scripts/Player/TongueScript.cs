@@ -363,7 +363,7 @@ public class TongueScript : MonoBehaviour
             var main = ps.main;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             main.startRotationZ = (R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad;
-            print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
+            //print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
             R.movement.R.particleManager.PlayParticle("PSRing");
             R.movement.R.particleManager.PlayParticle("PSBoxBurst");
             Grab(S.tongueBox);

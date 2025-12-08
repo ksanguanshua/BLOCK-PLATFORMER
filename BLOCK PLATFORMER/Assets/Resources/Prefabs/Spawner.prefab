@@ -193,5 +193,7 @@ MonoBehaviour:
   - {fileID: 8261550831112202955, guid: 530f320eaf8cf454f9e54e9fb1b660c4, type: 3}
   - {fileID: 3609162852785639143, guid: e03fa62ceabd1c9418623197b0b51afe, type: 3}
   spawnWidth: 3
-  spawnTimeMin: 3
-  spawnTimeMax: 3
+  spawnTimeMin: 1
+  spawnTimeMax: 1
+  totalBoxes: 15
+  totalLabels: 3
