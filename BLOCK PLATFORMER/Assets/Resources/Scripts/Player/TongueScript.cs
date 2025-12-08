@@ -166,8 +166,6 @@ public class TongueScript : MonoBehaviour
             S.tongueBox.GetComponent<Collider2D>().enabled = true;
             S.tongueBox.GetComponent<Rigidbody2D>().gravityScale = 2;
             S.tongueBox = null;
-
-            AudioManager.instance.PlayTongueIn();
         }
         S.holdInput = input;
     }
@@ -355,6 +353,9 @@ public class TongueScript : MonoBehaviour
         S.tongueRetracting = true;
         S.tongueOut = false;
         S.tongueOffset = Vector2.zero;
+
+        AudioManager.instance.PlayTongueIn();
+
         if (S.tongueBox != null)
         {
             GetComponent<Rigidbody2D>().AddForce(-S.lastFacingDir * M.pushBackForce, ForceMode2D.Impulse);
@@ -362,7 +363,7 @@ public class TongueScript : MonoBehaviour
             var main = ps.main;
             //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             main.startRotationZ = (R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad;
-            print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
+            //print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
             R.movement.R.particleManager.PlayParticle("PSRing");
             R.movement.R.particleManager.PlayParticle("PSBoxBurst");
             Grab(S.tongueBox);

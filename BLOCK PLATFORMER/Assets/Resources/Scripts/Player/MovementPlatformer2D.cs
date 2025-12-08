@@ -158,7 +158,7 @@ public class MovementPlatformer2D : Movement
                 // Basic Jump
                 else if (S.isGrounded || S.coyoteTimeActive == 1)
                 {
-                    print("Basic Jump");
+                    //print("Basic Jump");
                     S.canQuickFall = true;
                     BasicJump();
                     S.coyoteTimeActive = -1;

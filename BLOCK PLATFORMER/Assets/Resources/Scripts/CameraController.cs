@@ -28,6 +28,7 @@ public class CameraController : MonoBehaviour
         if (target != null)
         {
             camX = Mathf.Lerp(camX, Mathf.Clamp(target.position.x, minBound.x, maxBound.x), lerpSpeed);
+            camY = Mathf.Lerp(camY, Mathf.Clamp(target.position.y, minBound.y, maxBound.y), lerpSpeed);
             transform.position = new Vector3(camX, camY, transform.position.z);
         }
     }
