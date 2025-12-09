@@ -227,8 +227,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6082959108994921316}
@@ -1611,7 +1611,7 @@ RectTransform:
   m_Father: {fileID: 4842659800686855396}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1706,7 +1706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 2
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -1724,7 +1724,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: -694386168, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
     m_PressedSprite: {fileID: -1557013538026691241, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
-    m_SelectedSprite: {fileID: -1557013538026691241, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
+    m_SelectedSprite: {fileID: -694386168, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
     m_DisabledSprite: {fileID: -1557013538026691241, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
@@ -1911,8 +1911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -1935,7 +1935,7 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 4441701839283280931}
@@ -2203,7 +2203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5796480690471189032
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2720,7 +2720,7 @@ RectTransform:
   m_Father: {fileID: 8094989243619587379}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3051,7 +3051,7 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8218906353342579094}
@@ -4149,8 +4149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -4173,7 +4173,7 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1011553770143100941}
@@ -4563,6 +4563,7 @@ MonoBehaviour:
   panels:
   - panelName: Settings
     open: 0
+    startingSelection: {fileID: 378480257262986462}
     panelObject: {fileID: 8010749784540507042}
     interactables:
     - {fileID: 440866613936710078}
@@ -4581,6 +4582,7 @@ MonoBehaviour:
     timeToEnd: 1
   - panelName: Controls
     open: 0
+    startingSelection: {fileID: 7362307313610375451}
     panelObject: {fileID: 3948276222899260521}
     interactables:
     - {fileID: 3119093111609213019}
@@ -4596,6 +4598,7 @@ MonoBehaviour:
     timeToEnd: 1.5
   - panelName: PauseMenu
     open: 0
+    startingSelection: {fileID: 1767083619779393889}
     panelObject: {fileID: 1761554434208562748}
     interactables:
     - {fileID: 6927383578836382174}
@@ -4608,7 +4611,15 @@ MonoBehaviour:
     inactiveCoPanels: []
     animated: 1
     timeToEnd: 0.8333333
-  sliders: []
+  buttons:
+  - name: Quit
+    gameObject: {fileID: 5169768553463999814}
+    transitionToScene: Main Menu
+    quitProgram: 0
+    exitPause: 0
+  sliders:
+  - {fileID: 7114403673344457715}
+  - {fileID: 395586539226251503}
 --- !u!1 &5840660371227818521
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,8 +5472,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5485,7 +5496,7 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1418377339033719315}
@@ -5617,8 +5628,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_WrapAround: 0
+    m_Mode: 2
+    m_WrapAround: 1
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5641,7 +5652,7 @@ MonoBehaviour:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
-    m_SelectedTrigger: Selected
+    m_SelectedTrigger: Highlighted
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1633393150889661879}
@@ -6000,7 +6011,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6676418670532090586
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6449,10 +6460,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
+    m_SelectOnUp: {fileID: 7114403673344457715}
+    m_SelectOnDown: {fileID: 2097620088824922611}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 2
@@ -6467,7 +6478,7 @@ MonoBehaviour:
   m_SpriteState:
     m_HighlightedSprite: {fileID: -694386168, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
     m_PressedSprite: {fileID: -1557013538026691241, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
-    m_SelectedSprite: {fileID: -1557013538026691241, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
+    m_SelectedSprite: {fileID: -694386168, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
     m_DisabledSprite: {fileID: -1557013538026691241, guid: 2679492ac098e49408ff817a6724b9a5, type: 3}
   m_AnimationTriggers:
     m_NormalTrigger: Normal
