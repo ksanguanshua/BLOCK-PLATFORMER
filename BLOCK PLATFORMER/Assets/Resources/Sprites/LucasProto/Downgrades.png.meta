@@ -1,0 +1,477 @@
+fileFormatVersion: 2
+guid: 8eda52a7e1b8f6e479aa96098044fb80
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3985245667045497353
+    second: Downgrades_0
+  - first:
+      213: -1626347695439899930
+    second: Downgrades_1
+  - first:
+      213: -8553283972039541809
+    second: Downgrades_2
+  - first:
+      213: 813504908616610659
+    second: Downgrades_3
+  - first:
+      213: -6068462354292259814
+    second: Downgrades_4
+  - first:
+      213: -102159498879781651
+    second: Downgrades_5
+  - first:
+      213: -5285363044681371530
+    second: Downgrades_6
+  - first:
+      213: 2264480487988982166
+    second: Downgrades_7
+  - first:
+      213: 4709174622294811189
+    second: Downgrades_8
+  - first:
+      213: 3582909502272608153
+    second: Downgrades_9
+  - first:
+      213: -6560458392159795692
+    second: Downgrades_10
+  - first:
+      213: 5499083369662144230
+    second: Downgrades_11
+  - first:
+      213: 3583267560445544494
+    second: Downgrades_12
+  - first:
+      213: 7734307365864179632
+    second: Downgrades_13
+  - first:
+      213: -7499184957916808734
+    second: Downgrades_14
+  - first:
+      213: -4336377368570632382
+    second: Downgrades_15
+  - first:
+      213: 5527099173965419183
+    second: Downgrades_16
+  - first:
+      213: -5610329831392657850
+    second: Downgrades_17
+  - first:
+      213: 7873539688153317102
+    second: Downgrades_18
+  - first:
+      213: -1405514451923164916
+    second: Downgrades_19
+  - first:
+      213: 7548192114523657181
+    second: Downgrades_20
+  - first:
+      213: -7509724009742696119
+    second: Downgrades_21
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Downgrades_0
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 73
+        width: 26
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90a59e6c1df6e4730800000000000000
+      internalID: 3985245667045497353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_1
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 84
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e29704436d0e69e0800000000000000
+      internalID: -1626347695439899930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_2
+      rect:
+        serializedVersion: 2
+        x: 89
+        y: 84
+        width: 36
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcb7a8f6b81ac4980800000000000000
+      internalID: -8553283972039541809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_4
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 69
+        width: 30
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a14449f04ad78cba0800000000000000
+      internalID: -6068462354292259814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_6
+      rect:
+        serializedVersion: 2
+        x: 50
+        y: 47
+        width: 27
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6703acc505e96a6b0800000000000000
+      internalID: -5285363044681371530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_7
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 51
+        width: 41
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691f26f810d0d6f10800000000000000
+      internalID: 2264480487988982166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_9
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 31
+        width: 38
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9979451953d09b130800000000000000
+      internalID: 3582909502272608153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_14
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 33
+        width: 29
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e97a6e530b8de790800000000000000
+      internalID: -7499184957916808734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_16
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 1
+        width: 29
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa250963a6334bc40800000000000000
+      internalID: 5527099173965419183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Downgrades_17
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 1
+        width: 53
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64e301f3eba1422b0800000000000000
+      internalID: -5610329831392657850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: a9e8eff8378ab374e85b3c214492de2f
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Downgrades_0: 3985245667045497353
+      Downgrades_1: -1626347695439899930
+      Downgrades_10: -6560458392159795692
+      Downgrades_11: 5499083369662144230
+      Downgrades_12: 3583267560445544494
+      Downgrades_13: 7734307365864179632
+      Downgrades_14: -7499184957916808734
+      Downgrades_15: -4336377368570632382
+      Downgrades_16: 5527099173965419183
+      Downgrades_17: -5610329831392657850
+      Downgrades_18: 7873539688153317102
+      Downgrades_19: -1405514451923164916
+      Downgrades_2: -8553283972039541809
+      Downgrades_20: 7548192114523657181
+      Downgrades_21: -7509724009742696119
+      Downgrades_3: 813504908616610659
+      Downgrades_4: -6068462354292259814
+      Downgrades_5: -102159498879781651
+      Downgrades_6: -5285363044681371530
+      Downgrades_7: 2264480487988982166
+      Downgrades_8: 4709174622294811189
+      Downgrades_9: 3582909502272608153
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
