@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
 
     private void OnDisable()
     {
-        SaveData.instance.UpdateStats();
+        //SaveData.instance.UpdateStats();
     }
 
     void CashText()
@@ -120,12 +120,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (gameState == GameState.deliver || gameState == GameState.organize)
-            {
-                phaseStart.text = "";
-                startTimer = true;
-            }
-
             switch (gameState)
             {
                 case GameState.deliver:
@@ -238,12 +232,17 @@ public class GameManager : MonoBehaviour
 
             case GameState.setup:
 
+                Debug.Log(SceneManager.GetActiveScene().name);
+
+                SaveData.instance.UpdateStats();
+
                 switch (SceneManager.GetActiveScene().name)
                 {
 
                     case "Break Room":
 
-                        AudioManager.instance.PlayBreakMusic();
+                        AudioManager.instance.SetBGMParameter("Scene", 0);
+                        AudioManager.instance.PlayBGM();
 
                         cashObject.SetActive(true);
                         timerObject.SetActive(false);
@@ -253,14 +252,23 @@ public class GameManager : MonoBehaviour
 
                     case "Tutorial":
 
+                        AudioManager.instance.SetBGMParameter("Scene", 2);
 
+                        Debug.Log("SET SCENE VALUE");
 
+                        cashObject.SetActive(false);
+                        timerObject.SetActive(false);
+                        orderTrackerObject.SetActive(false);
+
+                        break;
+
+                    case "Level Select":
                         break;
 
                     default:
 
                         Debug.Log("IN LEVEL");
-                        AudioManager.instance.PlayLevelMusic();
+                        AudioManager.instance.SetBGMParameter("Scene", 1);
 
                         totalWaves = LevelInfo.instance.waves;
                         currentWave = 0;
@@ -330,7 +338,7 @@ public class GameManager : MonoBehaviour
                     if (completedOrders < ordersToComplete)
                     {
                         StartCoroutine(ShowPhase("YOU'RE FIRED!"));
-                        playerCash -= cashMadeThisShift;
+                        playerCash -= Mathf.RoundToInt(cashMadeThisShift / 2);
                         Invoke("ShiftLost", 3);
 
                         SetUpState(GameState.breakTime);
@@ -345,7 +353,7 @@ public class GameManager : MonoBehaviour
                         }
                         else
                         {
-                            StartCoroutine(ShowPhase("SHIFT COMPLETED!"));
+                            StartCoroutine(ShowPhase("SHIFT OVER!"));
                             ShiftWon();
 
                             SetUpState(GameState.breakTime);
@@ -375,8 +383,16 @@ public class GameManager : MonoBehaviour
 
     void ShiftWon()
     {
+        AudioManager.instance.StopBGM();
         AudioManager.instance.PlayVictoryMusic();
         SaveData.instance.UpdateStats();
+    }
+
+    public void BoxesCleared()
+    {
+        playerCash += cashMadeThisShift;
+        cashMadeThisShift *= 2;
+        StartCoroutine(ShowPhase("BOXES CLEARED!"));
     }
 }
 

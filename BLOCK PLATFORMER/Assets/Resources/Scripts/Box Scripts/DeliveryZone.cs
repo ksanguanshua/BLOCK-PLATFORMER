@@ -30,6 +30,7 @@ public class DeliveryZone : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+        BoxTypes.instance.createdBoxes.Clear();
     }
 
     // Update is called once per frame
@@ -45,6 +46,11 @@ public class DeliveryZone : MonoBehaviour
 
         if (GameManager.instance.gameState == GameManager.GameState.deliver)
         {
+            if (BoxTypes.instance.createdBoxes.Count == 0)
+            {
+                return;
+            }
+
             if (items.Count == 0)
             {
                 if (!onCooldown)

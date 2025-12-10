@@ -287,14 +287,14 @@ public class TongueScript : MonoBehaviour
 
             S.tongueOffset = boxHit.transform.position - transform.position;
             S.tongueOut = true;
-            print("box hit : " + boxHit);
+            //print("box hit : " + boxHit);
             S.tongueBox = boxHit;
             R.anim.SetFloat("tongueX", S.tongueOffset.x);
             R.anim.SetFloat("tongueY", S.tongueOffset.y);
         }
         else
         {
-            print("box not hit");
+            //print("box not hit");
             RaycastHit2D groundHit = Physics2D.Raycast(transform.position, direction, M.tongueLength, R.layerGround);
             if (groundHit)
             {

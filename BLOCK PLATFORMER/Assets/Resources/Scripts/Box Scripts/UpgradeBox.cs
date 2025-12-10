@@ -6,6 +6,8 @@ public class UpgradeBox : Box
     [SerializeField] int price;
     [SerializeField] float increaseMult;
 
+    [SerializeField] float upgradePercent;
+
     [SerializeField] TongueScript tongue;
     [SerializeField] MovementPlatformer2D movement;
 
@@ -74,42 +76,42 @@ public class UpgradeBox : Box
     void TongueLength()
     {
         Debug.Log("UPGRADED TONGUE LENGTH");
-        tongue.M.tongueLength *= 1.05f;
+        tongue.M.tongueLength *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
     void TongueSpeed()
     {
         Debug.Log("UPGRADED TONGUE SPEED");
-        tongue.M.tongueShootTime *= 0.95f;
+        tongue.M.tongueShootTime *= 1 - upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
     void MovementSpeed()
     {
         Debug.Log("UPGRADED MOVE SPEED");
-        movement.M.movementSpeed *= 1.05f;
+        movement.M.movementSpeed *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
     void JumpHeight()
     {
         Debug.Log("UPGRADED JUMP HEIGHT");
-        movement.M.jumpForce *= 1.05f;
+        movement.M.jumpForce *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
     void TonguePullPower()
     {
         Debug.Log("UPGRADED TONGUE PULL");
-        tongue.M.tonguePullForce *= 1.05f;
+        tongue.M.tonguePullForce *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
     void TractionIncrease()
     {
         Debug.Log("UPGRADED TRACTION");
-        movement.M.decceleration *= 1.05f;
+        movement.M.decceleration *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
@@ -121,7 +123,7 @@ public class UpgradeBox : Box
     void ThrowForce()
     {
         Debug.Log("UPGRADED THROW FORCE");
-        tongue.M.throwForce *= 1.05f;
+        tongue.M.throwForce *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 

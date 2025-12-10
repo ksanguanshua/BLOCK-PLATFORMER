@@ -190,6 +190,11 @@ public class MovementPlatformer2D : Movement
     #region Main Functions
     private void Start()
     {
+        if (SaveData.instance != null)
+        {
+            M = SaveData.instance.playerStats.movementModifiers;
+        }
+
         ComponentGrab();
         ModtoState();
         S.state = State.Base;
