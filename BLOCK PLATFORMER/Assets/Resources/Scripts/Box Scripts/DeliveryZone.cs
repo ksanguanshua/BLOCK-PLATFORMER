@@ -106,7 +106,7 @@ public class DeliveryZone : MonoBehaviour
 
                 if (collider.TryGetComponent(out SpriteRenderer sr))
                 {
-                    //sr.enabled = false;
+                    sr.enabled = false;
                 }
 
                 collider.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;

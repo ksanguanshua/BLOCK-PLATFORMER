@@ -17,9 +17,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] FMODUnity.EventReference boxHit;
     [SerializeField] FMODUnity.EventReference boxBump;
 
-    [SerializeField] FMODUnity.EventReference levelMusic;
-    [SerializeField] FMODUnity.EventReference breakMusic;
-    [SerializeField] FMODUnity.EventReference victoryMusic;
+    [SerializeField] FMODUnity.EventReference BGM;
 
     /*Dictionary<string, FMODUnity.EventReference> stringToSound = new()
     {
@@ -54,22 +52,12 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        
+        PlayBGM();
     }
 
-    public void PlayLevelMusic()
+    public void PlayBGM()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(levelMusic);
-    }
-
-    public void PlayBreakMusic()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(breakMusic);
-    }
-
-    public void PlayVictoryMusic()
-    {
-        FMODUnity.RuntimeManager.PlayOneShot(victoryMusic);
+        FMODUnity.RuntimeManager.PlayOneShot(BGM);
     }
 
     public void PlayTongueIn()

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     bool runTutorial;
 
-    public float phaseTimer = 60;
+    [SerializeField] float phaseTimer = 60;
     float phaseTimer_t;
 
     [SerializeField] TextMeshProUGUI timer;
@@ -21,23 +21,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI orderTracker;
     [SerializeField] TextMeshProUGUI cash;
 
-    [SerializeField] GameObject orderTrackerObject;
-    [SerializeField] GameObject timerObject;
-    [SerializeField] GameObject cashObject;
-
     int totalWaves;
     [HideInInspector] public int currentWave { get; private set; }
-    [HideInInspector] public int playerCash;
+
+    int playerCash;
     int cashMadeThisShift;
 
     bool startTimer;
 
     int ordersToComplete;
     int completedOrders;
-
-     public int cashPerLabelInOrder = 25;
-     public int cashPerBonusOrder = 5;
-
     public GameState gameState { get; private set; }
 
     public enum GameState
@@ -66,10 +59,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerCash = SaveData.instance.playerStats.playerCash;
-
-        cashPerLabelInOrder = SaveData.instance.playerStats.cashPerLabelInOrder;
-        cashPerBonusOrder = SaveData.instance.playerStats.cashPerBonusOrder;
+        
     }
 
     // Update is called once per frame
@@ -82,21 +72,7 @@ public class GameManager : MonoBehaviour
     public void ChangeScene(string scene)
     {
         SceneManager.LoadScene(scene);
-    }
-
-    private void OnEnable()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
         SetUpState(GameState.setup);
-    }
-
-    private void OnDisable()
-    {
-        SaveData.instance.UpdateStats();
     }
 
     void CashText()
@@ -120,34 +96,8 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            if (gameState == GameState.deliver || gameState == GameState.organize)
-            {
-                phaseStart.text = "";
-                startTimer = true;
-            }
-
-            switch (gameState)
-            {
-                case GameState.deliver:
-
-                    phaseStart.text = "";
-                    startTimer = true;
-
-                    break;
-                case GameState.organize:
-
-                    phaseStart.text = "";
-                    startTimer = true;
-
-                    break;
-                case GameState.breakTime:
-
-                    phaseStart.text = "";
-                    startTimer = false;
-                    ChangeScene("Break Room");
-
-                    break;
-            }
+            phaseStart.text = "";
+            startTimer = true;
         }
         
     }
@@ -155,10 +105,8 @@ public class GameManager : MonoBehaviour
     public void CompletedOrder(int size) //called from delivery zones
     {
         completedOrders++;
-
-        playerCash += size * cashPerLabelInOrder;
-        cashMadeThisShift += size * cashPerLabelInOrder;
-
+        playerCash += size * 50;
+        cashMadeThisShift += size * 50;
         int ordersLeft = ordersToComplete - completedOrders;
 
         if (ordersLeft > 0)
@@ -172,8 +120,8 @@ public class GameManager : MonoBehaviour
         }
         else if (ordersLeft < 0)
         {
-            playerCash += -ordersLeft * cashPerBonusOrder;
-            cashMadeThisShift += -ordersLeft * cashPerBonusOrder;
+            playerCash += -ordersLeft * 50;
+            cashMadeThisShift += -ordersLeft * 50;
         }
 
         Debug.Log("Completed Orders: " + completedOrders.ToString());
@@ -238,40 +186,13 @@ public class GameManager : MonoBehaviour
 
             case GameState.setup:
 
-                switch (SceneManager.GetActiveScene().name)
+                if (LevelInfo.instance != null)
                 {
-
-                    case "Break Room":
-
-                        AudioManager.instance.PlayBreakMusic();
-
-                        cashObject.SetActive(true);
-                        timerObject.SetActive(false);
-                        orderTrackerObject.SetActive(false);
-
-                        break;
-
-                    case "Tutorial":
-
-
-
-                        break;
-
-                    default:
-
-                        Debug.Log("IN LEVEL");
-                        AudioManager.instance.PlayLevelMusic();
-
-                        totalWaves = LevelInfo.instance.waves;
-                        currentWave = 0;
-                        phaseTimer_t = phaseTimer;
-                        startTimer = false;
-
-                        cashMadeThisShift = 0;
-
-                        SetUpState(GameState.organize);
-
-                        break;
+                    totalWaves = LevelInfo.instance.waves;
+                    currentWave = 0;
+                    phaseTimer_t = phaseTimer;
+                    startTimer = false;
+                    SetUpState(GameState.organize);
                 }
 
                 break;
@@ -280,10 +201,6 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine(ShowPhase("ORGANIZE THE PACKAGES"));
                 orderTracker.text = "";
-
-                orderTrackerObject.SetActive(false);
-                cashObject.SetActive(true);
-                timerObject.SetActive(true);
 
                 completedOrders = 0;
                 ordersToComplete = LevelInfo.instance.ordersPerWave[currentWave];
@@ -294,10 +211,6 @@ public class GameManager : MonoBehaviour
 
                 StartCoroutine(ShowPhase("FULFILL YOUR ORDERS"));
                 orderTracker.text = "ORDERS LEFT: " + ordersToComplete.ToString();
-
-                orderTrackerObject.SetActive(true);
-                cashObject.SetActive(true);
-                timerObject.SetActive(true);
 
                 break;
 
@@ -346,7 +259,7 @@ public class GameManager : MonoBehaviour
                         else
                         {
                             StartCoroutine(ShowPhase("SHIFT COMPLETED!"));
-                            ShiftWon();
+                            Invoke("ShiftWon", 3);
 
                             SetUpState(GameState.breakTime);
 
@@ -369,14 +282,14 @@ public class GameManager : MonoBehaviour
 
     void ShiftLost()
     {
-        //StopAllCoroutines();
-        //ChangeScene("Break Room");
+        StopAllCoroutines();
+        ChangeScene("Break Room");
     }
 
     void ShiftWon()
     {
-        AudioManager.instance.PlayVictoryMusic();
-        SaveData.instance.UpdateStats();
+        StopAllCoroutines();
+        ChangeScene("Break Room");
     }
 }
 

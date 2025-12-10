@@ -23,63 +23,10 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters:
-  - {fileID: 2143587515987321521}
-  - {fileID: -4585528041475153440}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 239703
---- !u!114 &-5899111389198275477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/BreakMusic
-  m_EditorClassIdentifier: 
-  Path: event:/BreakMusic
-  Guid:
-    Data1: -1510865947
-    Data2: 1132018665
-    Data3: -1130112374
-    Data4: 548609160
-  Banks:
-  - {fileID: -4096082999553746503}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 90370
---- !u!114 &-4585528041475153440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/BGM/Volume
-  m_EditorClassIdentifier: 
-  Name: Volume
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 2781934831
-    data2: 3468005012
-  Type: 0
-  IsGlobal: 0
-  Labels: []
-  Exists: 1
+  Length: 109619
 --- !u!114 &-4096082999553746503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,10 +42,10 @@ MonoBehaviour:
   Path: Assets/Resources/Sounds/BoxBox/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639009341189020546
+  lastModified: 639007509105717893
   FileSizes:
   - Name: Desktop
-    Value: 3640352
+    Value: 1878816
   Exists: 1
 --- !u!114 &-869353962991275377
 MonoBehaviour:
@@ -179,15 +126,13 @@ MonoBehaviour:
   - {fileID: 8260572118770307403}
   - {fileID: -131338325336005759}
   - {fileID: -8144536358173899534}
-  - {fileID: -5899111389198275477}
-  - {fileID: 7585973375119098489}
   EditorParameters: []
   MasterBanks:
   - {fileID: -4096082999553746503}
   StringsBanks:
   - {fileID: 671238129012815440}
   cacheVersion: 131856
-  cacheTime: 639009341189060812
+  cacheTime: 639007509105825162
   SerializableEventsDict:
   - key: event:/TongueOut
     index: 0
@@ -207,10 +152,6 @@ MonoBehaviour:
     index: 7
   - key: event:/BGM
     index: 8
-  - key: event:/BreakMusic
-    index: 9
-  - key: event:/VictoryMusic
-    index: 10
 --- !u!114 &671238129012815440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,34 +167,10 @@ MonoBehaviour:
   Path: Assets/Resources/Sounds/BoxBox/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639009341189060812
+  lastModified: 639007509105825162
   FileSizes:
   - Name: Desktop
-    Value: 1298
-  Exists: 1
---- !u!114 &2143587515987321521
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/BGM/Scene
-  m_EditorClassIdentifier: 
-  Name: Scene
-  StudioPath: 
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 3022754093
-    data2: 3088045380
-  Type: 0
-  IsGlobal: 0
-  Labels: []
+    Value: 1118
   Exists: 1
 --- !u!114 &6188935699723549370
 MonoBehaviour:
@@ -336,33 +253,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
---- !u!114 &7585973375119098489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/VictoryMusic
-  m_EditorClassIdentifier: 
-  Path: event:/VictoryMusic
-  Guid:
-    Data1: 1433498603
-    Data2: 1248048983
-    Data3: 1234793909
-    Data4: 1597981521
-  Banks:
-  - {fileID: -4096082999553746503}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4154
 --- !u!114 &7827966076476073560
 MonoBehaviour:
   m_ObjectHideFlags: 0

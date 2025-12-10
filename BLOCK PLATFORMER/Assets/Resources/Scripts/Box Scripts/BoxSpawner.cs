@@ -24,7 +24,6 @@ public class BoxSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        producedBoxes.Clear();
         currentBoxes = totalBoxes;
 
         for (int i = 0; i < BoxTypes.instance.labelSprites.Length; i++)

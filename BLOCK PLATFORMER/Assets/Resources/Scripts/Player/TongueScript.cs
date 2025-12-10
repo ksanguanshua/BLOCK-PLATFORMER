@@ -4,7 +4,7 @@ using SaintsField;
 using System.Collections;
 using Unity.VisualScripting;
 using SaintsField.Playa;
-//using static UnityEditor.Experimental.GraphView.GraphView;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TongueScript : MonoBehaviour
 {
@@ -70,8 +70,6 @@ public class TongueScript : MonoBehaviour
 
     void Start()
     {
-        M = SaveData.instance.playerStats.tongueModifiers;
-
         S.canTurn = true;
         S.lastFacingDir = Vector2.right;
         S.hand = transform.Find("Hand");
