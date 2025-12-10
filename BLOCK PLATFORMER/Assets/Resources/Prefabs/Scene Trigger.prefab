@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0094c79bd89f4ed419a2addeef573052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: Level 1
+  targetScene: Break Room
 --- !u!61 &5286768987641160508
 BoxCollider2D:
   m_ObjectHideFlags: 0

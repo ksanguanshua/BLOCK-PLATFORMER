@@ -313,14 +313,13 @@ public class MainMenu : MonoBehaviour
                     if (s.name == "MUSIC")
                     {
                         var e = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-                        print(e);
-
+                        //print(e);
                         s.value = e;
                     }
                     else if (s.name == "SFX")
                     {
                         var e = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
-                        print(e);
+                        //print(e);
                         s.value = e;
                     }
                 }
@@ -339,6 +338,7 @@ public class MainMenu : MonoBehaviour
                     {
                         float value = s.value;
                         PlayerPrefs.SetFloat("MusicVolume", value);
+                        AudioManager.instance.SetBGMParameter("Volume", value);
                         PlayerPrefs.Save();
                     }
                     else if (s.name == "SFX")

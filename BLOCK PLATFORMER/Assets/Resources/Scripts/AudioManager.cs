@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour
 {
@@ -18,6 +19,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] FMODUnity.EventReference boxBump;
 
     [SerializeField] FMODUnity.EventReference BGM;
+    [SerializeField] FMODUnity.EventReference victoryMusic;
+
+    EventInstance bgmInstance;
 
     /*Dictionary<string, FMODUnity.EventReference> stringToSound = new()
     {
@@ -52,12 +56,28 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        bgmInstance = FMODUnity.RuntimeManager.CreateInstance(BGM);
         PlayBGM();
     }
 
     public void PlayBGM()
     {
-        FMODUnity.RuntimeManager.PlayOneShot(BGM);
+        bgmInstance.start();
+    }
+
+    public void StopBGM()
+    {
+        bgmInstance.stop(STOP_MODE.ALLOWFADEOUT);
+    }
+
+    public void SetBGMParameter(string parameter, float value)
+    {
+        bgmInstance.setParameterByName(parameter, value);
+    }
+
+    public void PlayVictoryMusic()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(victoryMusic);
     }
 
     public void PlayTongueIn()
