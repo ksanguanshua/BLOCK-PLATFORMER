@@ -709,6 +709,12 @@ MonoBehaviour:
   phaseStart: {fileID: 3962946996989095658}
   orderTracker: {fileID: 5154250713428634883}
   cash: {fileID: 3676462362966631878}
+  orderTrackerObject: {fileID: 1649287551503545056}
+  timerObject: {fileID: 2803954090378410252}
+  cashObject: {fileID: 5856748715871426007}
+  playerCash: 0
+  cashPerLabelInOrder: 25
+  cashPerBonusOrder: 5
 --- !u!1 &5856748715871426007
 GameObject:
   m_ObjectHideFlags: 0
