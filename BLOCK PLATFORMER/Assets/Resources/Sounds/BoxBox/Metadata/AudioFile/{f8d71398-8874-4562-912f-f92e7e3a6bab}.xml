@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f8d71398-8874-4562-912f-f92e7e3a6bab}">
+		<property name="assetPath">
+			<value>READY FOR WORK 2025-12-10 13_46_17 (1).wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>88.513015873015874</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1299a143-107f-4815-be41-6c43ab0caa89}</destination>
+		</relationship>
+	</object>
+</objects>

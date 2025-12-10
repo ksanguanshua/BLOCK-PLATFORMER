@@ -33,7 +33,6 @@ public class SaveData : MonoBehaviour
         {
             playerStats.initFile = true;
             UpdateStats();
-            LoadFromJSON();
         }
     }
 
@@ -61,7 +60,7 @@ public class SaveData : MonoBehaviour
         }
         else
         {
-
+            UpdateStats();
         }
     }
 
@@ -103,11 +102,11 @@ public class PlayerStats
     public TongueScript.Modifiers tongueModifiers;
     public MovementPlatformer2D.Modifiers movementModifiers;
 
-    public int cashPerLabelInOrder;
-    public int cashPerBonusOrder;
+    public int cashPerLabelInOrder = 25;
+    public int cashPerBonusOrder = 5;
 
-    public float phaseTime;
-    public int playerCash;
+    public float phaseTime = 60;
+    public int playerCash = 0;
 
     public int[] upgrades = new int[10];
 }
