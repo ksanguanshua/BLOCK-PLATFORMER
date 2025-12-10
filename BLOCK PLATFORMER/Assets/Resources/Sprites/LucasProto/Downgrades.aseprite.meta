@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1cf51549ff39d7a42b4b2910ad31fdef
+guid: b6f5ccb5ae2b55c4987f784946aa337b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,9 +123,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: TutorialImages
+  - name: Downgrades
     originalName: 
-    pivot: {x: 0.58862877, y: 0}
+    pivot: {x: 0.53333336, y: -0.018348625}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -133,9 +133,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 299
-      height: 112
-    spriteID: a27f2c491d11efc419e5c9469d2573aa
+      width: 150
+      height: 109
+    spriteID: e03e21c5b5079b84a98bb62dcfbf8e2b
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,25 +148,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 11509066
+      value0: 2699574490
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: TutorialImages
+    name: Downgrades
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: TutorialImages
+    - name: Downgrades
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 0
-        y: 0
-        width: 299
-        height: 112
-      spriteId: a27f2c491d11efc419e5c9469d2573aa
+        x: 4
+        y: 2
+        width: 150
+        height: 109
+      spriteId: e03e21c5b5079b84a98bb62dcfbf8e2b
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -185,5 +185,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 352, y: 112}
-  previousTextureSize: {x: 512, y: 128}
+  canvasSize: {x: 168, y: 112}
+  previousTextureSize: {x: 256, y: 128}

@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    EventSystem eventSystem;
     [System.Serializable]
     public class MenuPanel
     {
         public string panelName;
         [SerializeField] public bool open;
-
+        public Selectable startingSelection;
         public GameObject panelObject;
         public List<GameObject> interactables;
         public List<GameObject> openButtons;
@@ -24,16 +26,31 @@ public class MainMenu : MonoBehaviour
         public float timeToEnd;
     }
 
+    [System.Serializable]
+    public class Buttons
+    {
+        public string name;
+        public GameObject gameObject;
+        public string transitionToScene;
+        public bool quitProgram;
+        public bool exitPause;
+    }
+
     public string playSceneName;
     public bool pause;
     public bool currentlyPaused;
     public List<MenuPanel> panels;
+    public List<Buttons> buttons;
     public List<Slider> sliders;
 
-    // The default buttons on the home screen
+
 
     void Start()
     {
+        Time.timeScale = 1;
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+        StartSlideChecker();
+
         // ensure everything is closed at start
         foreach (var p in panels)
         {
@@ -66,9 +83,31 @@ public class MainMenu : MonoBehaviour
     {
         string btnName = button.name;
 
-        // ---------------- Special Cases Section ----------------
-        // You can add any custom checks here:
-        // if (btnName == "Something") { do something }
+        foreach (Buttons but in buttons)
+        {
+            if (but.name == btnName)
+            {
+                if (but.exitPause)
+                {
+                    Pause();
+                    return;
+                }
+                else if (but.quitProgram)
+                {
+                    Application.Quit();
+                    return;
+                }
+                else
+                {
+                    print(but.name);
+                    print(but.transitionToScene);
+                    SceneManager.LoadScene(but.transitionToScene);
+                    return;
+                }
+            }
+        }
+
+        // THESE ARE BASICALLY OVERRIDDEN BUT I DONT WANNA MESS WITH THE CORE GAMEPLAY
 
         // Play button
         if (btnName == "Play")
@@ -88,7 +127,6 @@ public class MainMenu : MonoBehaviour
         {
             Pause();
         }
-        // --------------------------------------------------------
 
         // Check if button opens a panel
         foreach (var panel in panels)
@@ -127,10 +165,14 @@ public class MainMenu : MonoBehaviour
                 panel.panelObject.SetActive(true);
                 Animator anim = panel.panelObject.GetComponent<Animator>();
                 anim.SetTrigger("Open");
+                eventSystem.SetSelectedGameObject(panel.startingSelection.gameObject);
+                //StartCoroutine(AnimationStart(panel.timeToEnd, panel));
             }
             else
             {
                 panel.panelObject.SetActive(true);
+                //eventsystem selector
+                eventSystem.SetSelectedGameObject(panel.startingSelection.gameObject);
             }
             panel.open = true;
         }
@@ -217,6 +259,11 @@ public class MainMenu : MonoBehaviour
         yield return new WaitForSeconds(timeToEnd);
         panel.SetActive(false);
     }
+    public IEnumerator AnimationStart(float timeToEnd, MenuPanel panel)
+    {
+        yield return new WaitForSeconds(timeToEnd);
+        eventSystem.SetSelectedGameObject(panel.startingSelection.gameObject);
+    }
 
     MenuPanel GetPanel(string name)
     {
@@ -255,6 +302,31 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    void StartSlideChecker()
+    {
+        if (sliders.Count > 0)
+        {
+            foreach (Slider s in sliders)
+            {
+                if (s != null)
+                {
+                    if (s.name == "MUSIC")
+                    {
+                        var e = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+                        print(e);
+
+                        s.value = e;
+                    }
+                    else if (s.name == "SFX")
+                    {
+                        var e = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+                        print(e);
+                        s.value = e;
+                    }
+                }
+            }
+        }
+    }
     void SlideChecker()
     {
         if (sliders.Count > 0)
@@ -263,15 +335,18 @@ public class MainMenu : MonoBehaviour
             {
                 if (s != null)
                 {
-                    if (s.name == "Music")
+                    if (s.name == "MUSIC")
                     {
                         float value = s.value;
-                        // HEY PING CAN YOU WRAP THIS FOR FMOD
+                        PlayerPrefs.SetFloat("MusicVolume", value);
+                        PlayerPrefs.Save();
                     }
                     else if (s.name == "SFX")
                     {
                         float value = s.value;
-                        // HEY PING CAN YOU WRAP THIS FOR FMOD
+                        PlayerPrefs.SetFloat("SFXVolume", value);
+                        PlayerPrefs.Save();
+
                     }
                 }
             }
