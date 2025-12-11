@@ -20,6 +20,13 @@ public class SaveData : MonoBehaviour
             Destroy(gameObject);
         }
 
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            tongueScript = player.GetComponent<TongueScript>();
+            movementScript = player.GetComponent<MovementPlatformer2D>();
+        }
+
         LoadFromJSON();
 
         if (!playerStats.initFile)
@@ -31,12 +38,7 @@ public class SaveData : MonoBehaviour
 
     private void Start()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            tongueScript = player.GetComponent<TongueScript>();
-            movementScript = player.GetComponent<MovementPlatformer2D>();
-        }
+        
     }
 
     public void SaveToJSON()

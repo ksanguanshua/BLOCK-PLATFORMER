@@ -107,3 +107,10 @@ MonoBehaviour:
       Data3: 1195053200
       Data4: -1644142806
     Path: event:/BGM
+  victoryMusic:
+    Guid:
+      Data1: 1433498603
+      Data2: 1248048983
+      Data3: 1234793909
+      Data4: 1597981521
+    Path: event:/VictoryMusic

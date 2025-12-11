@@ -78,6 +78,7 @@ public class AudioManager : MonoBehaviour
     public void PlayVictoryMusic()
     {
         FMODUnity.RuntimeManager.PlayOneShot(victoryMusic);
+        Debug.Log("playing victory music");
     }
 
     public void PlayTongueIn()
