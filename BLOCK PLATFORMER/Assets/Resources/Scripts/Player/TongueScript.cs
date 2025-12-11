@@ -4,6 +4,7 @@ using SaintsField;
 using System.Collections;
 using Unity.VisualScripting;
 using SaintsField.Playa;
+using UnityEngine.UIElements;
 //using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class TongueScript : MonoBehaviour
@@ -320,10 +321,15 @@ public class TongueScript : MonoBehaviour
 
     void BoxToTongueTip(GameObject box)
     {
+        if (box.TryGetComponent(out Box boxClass))
+        {
+            boxClass.OnTouch();
+        }
+
         box.GetComponent<Collider2D>().enabled = false;
         box.transform.rotation = S.hand.rotation;
         box.layer = LayerMask.NameToLayer("HeldBox");
-        box.GetComponent<Box>().OnHold();
+        
         box.GetComponent<Rigidbody2D>().MoveRotation(S.hand.rotation);
         box.GetComponent<Rigidbody2D>().gravityScale = 0;
         box.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
@@ -360,6 +366,7 @@ public class TongueScript : MonoBehaviour
 
         if (S.tongueBox != null)
         {
+            Grab(S.tongueBox);
             GetComponent<Rigidbody2D>().AddForce(-S.lastFacingDir * M.pushBackForce, ForceMode2D.Impulse);
             ParticleSystem ps = R.movement.R.particleManager.GetParticleSystem("PSRing");
             var main = ps.main;
@@ -368,7 +375,12 @@ public class TongueScript : MonoBehaviour
             //print((R.playerSprite.eulerAngles.z * -1) * Mathf.Deg2Rad);
             R.movement.R.particleManager.PlayParticle("PSRing");
             R.movement.R.particleManager.PlayParticle("PSBoxBurst");
-            Grab(S.tongueBox);
+
+            if (S.tongueBox.TryGetComponent(out Box boxClass))
+            {
+                boxClass.OnHold();
+            }
+
             S.tongueBox.transform.parent = null;
             S.tongueBox = null;
 
