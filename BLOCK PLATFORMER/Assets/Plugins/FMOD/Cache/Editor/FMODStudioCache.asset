@@ -29,6 +29,78 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 332339
+--- !u!114 &-8023612428718333298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TongueIn/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-6553247309082480159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: parameter:/SFX Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-6437443327291615640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Dash/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5899111389198275477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,10 +167,58 @@ MonoBehaviour:
   Path: Assets/Resources/Sounds/BoxBox/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639009750633317126
+  lastModified: 639010665140181799
   FileSizes:
   - Name: Desktop
-    Value: 4938976
+    Value: 4942208
+  Exists: 1
+--- !u!114 &-3796725370300062821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Jump/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-1078595533599780975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BoxBump/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &-869353962991275377
 MonoBehaviour:
@@ -123,10 +243,35 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -6437443327291615640}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-581148464069149485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TongueOut/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-131338325336005759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +295,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -1078595533599780975}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
@@ -181,13 +327,14 @@ MonoBehaviour:
   - {fileID: -8144536358173899534}
   - {fileID: -5899111389198275477}
   - {fileID: 7585973375119098489}
-  EditorParameters: []
+  EditorParameters:
+  - {fileID: -6553247309082480159}
   MasterBanks:
   - {fileID: -4096082999553746503}
   StringsBanks:
   - {fileID: 671238129012815440}
   cacheVersion: 131856
-  cacheTime: 639009750633342534
+  cacheTime: 639010665140201905
   SerializableEventsDict:
   - key: event:/TongueOut
     index: 0
@@ -226,10 +373,34 @@ MonoBehaviour:
   Path: Assets/Resources/Sounds/BoxBox/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639009750633342534
+  lastModified: 639010665140201905
   FileSizes:
   - Name: Desktop
-    Value: 1298
+    Value: 1350
+  Exists: 1
+--- !u!114 &1299068643257592927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DoorClose/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
   Exists: 1
 --- !u!114 &2143587515987321521
 MonoBehaviour:
@@ -255,6 +426,78 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &4242906484541683793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BoxHit/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &5516936947580351303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/VictoryMusic/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &5689411693099215514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ButtonClick/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &6188935699723549370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +521,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -3796725370300062821}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
@@ -305,7 +549,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -8023612428718333298}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
@@ -332,7 +577,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 5689411693099215514}
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
@@ -359,7 +605,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 5516936947580351303}
   MinDistance: 1
   MaxDistance: 20
   Length: 4154
@@ -386,7 +633,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -581148464069149485}
   MinDistance: 1
   MaxDistance: 20
   Length: 8000
@@ -413,7 +661,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 1299068643257592927}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
@@ -440,7 +689,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 4242906484541683793}
   MinDistance: 1
   MaxDistance: 20
   Length: 2000

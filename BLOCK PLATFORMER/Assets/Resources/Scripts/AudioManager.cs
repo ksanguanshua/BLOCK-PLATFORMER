@@ -75,6 +75,11 @@ public class AudioManager : MonoBehaviour
         bgmInstance.setParameterByName(parameter, value);
     }
 
+    public void SetSFXParameter(float value)
+    {
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("SFX Volume", value);
+    }
+
     public void PlayVictoryMusic()
     {
         FMODUnity.RuntimeManager.PlayOneShot(victoryMusic);
