@@ -49,6 +49,10 @@ public class MainMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
+
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+
         StartSlideChecker();
 
         // ensure everything is closed at start
@@ -345,6 +349,7 @@ public class MainMenu : MonoBehaviour
                     {
                         float value = s.value;
                         PlayerPrefs.SetFloat("SFXVolume", value);
+                        AudioManager.instance.SetSFXParameter(value);
                         PlayerPrefs.Save();
 
                     }

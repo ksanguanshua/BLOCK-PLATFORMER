@@ -29693,6 +29693,10 @@ MonoBehaviour:
     movementSpeedAir: 7
     accelerationAir: 5
     deccelerationAir: 5
+    DIFF_CROUCH_VALS: 1
+    movementSpeedCrouch: 0
+    accelerationCrouch: 2
+    deccelerationCrouch: 2
     JUMP_ABLE: 1
     jumpForce: 15
     baseGroundNormal: {x: 0, y: 1}
@@ -29729,6 +29733,7 @@ MonoBehaviour:
     state: 1
     facing: {x: 1, y: 0}
     canTurn: 1
+    prevFrameGrounded: 0
     isGrounded: 1
     amountOfJumps: 0
     canQuickFall: 1
@@ -29989,6 +29994,7 @@ MonoBehaviour:
   S:
     holdInput: 0
     lastFacingDir: {x: 0, y: 0}
+    lastFacingDirLR: 0
     canTurn: 0
     heldBox: {fileID: 0}
     tongueBox: {fileID: 0}

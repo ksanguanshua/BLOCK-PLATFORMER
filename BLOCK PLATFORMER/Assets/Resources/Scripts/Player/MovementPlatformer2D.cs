@@ -162,6 +162,8 @@ public class MovementPlatformer2D : Movement
                     S.canQuickFall = true;
                     BasicJump();
                     S.coyoteTimeActive = -1;
+
+                    AudioManager.instance.PlayJump();
                 }
 
                 else if (M.JUMP_CUE)
