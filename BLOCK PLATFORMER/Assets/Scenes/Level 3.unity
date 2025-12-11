@@ -337,7 +337,7 @@ MonoBehaviour:
   camX: 0
   camY: 0
   camZ: 0
-  maxBound: {x: 16, y: 19.75}
+  maxBound: {x: 20.75, y: 5}
   minBound: {x: -15.5, y: 0}
   lerpSpeed: 0.05
 --- !u!114 &519420034

@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8740256830383858683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BGM/Scene
+  m_EditorClassIdentifier: 
+  Name: Scene
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3022754093
+    data2: 3088045380
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-8307551713981016596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Dash/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-8144536358173899534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,6 +149,30 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-5924955546515906153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/ButtonClick/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-5899111389198275477
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +200,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 90370
+--- !u!114 &-4602464900748195505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TongueIn/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &-4585528041475153440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +268,77 @@ MonoBehaviour:
   - Name: Desktop
     Value: 4942208
   Exists: 1
+--- !u!114 &-3944190069109437694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Resources/Sounds/BoxBox/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 639010665140201905
+  FileSizes:
+  - Name: Desktop
+    Value: 1350
+  Exists: 1
+--- !u!114 &-3907124607595963083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Jump/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-3827576180100033908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BreakMusic
+  m_EditorClassIdentifier: 
+  Path: event:/BreakMusic
+  Guid:
+    Data1: -1510865947
+    Data2: 1132018665
+    Data3: -1130112374
+    Data4: 548609160
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 90370
 --- !u!114 &-3796725370300062821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +363,34 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-3696237079745346579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dash
+  m_EditorClassIdentifier: 
+  Path: event:/Dash
+  Guid:
+    Data1: -305951972
+    Data2: 1132102980
+    Data3: -1529189977
+    Data4: 1046442560
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -8307551713981016596}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-1078595533599780975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +415,58 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &-903989124931049507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BoxHit/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &-896129183627872273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TongueIn
+  m_EditorClassIdentifier: 
+  Path: event:/TongueIn
+  Guid:
+    Data1: -1554645949
+    Data2: 1210533814
+    Data3: 555511427
+    Data4: -622947425
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -4602464900748195505}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-869353962991275377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,6 +495,35 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &-638205918359513542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BGM
+  m_EditorClassIdentifier: 
+  Path: event:/BGM
+  Guid:
+    Data1: 1639880019
+    Data2: 1310554904
+    Data3: 1195053200
+    Data4: -1644142806
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: -8740256830383858683}
+  - {fileID: 4732388843788371698}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 332339
 --- !u!114 &-581148464069149485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,46 +589,46 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 671238129012815440}
-  - {fileID: -4096082999553746503}
+  - {fileID: -3944190069109437694}
+  - {fileID: 8105150060356045306}
   EditorEvents:
-  - {fileID: 7827966076476073560}
-  - {fileID: 6188935699723549370}
-  - {fileID: 6405215318249690569}
-  - {fileID: -869353962991275377}
-  - {fileID: 6796995785675703978}
-  - {fileID: 8178961908435685000}
-  - {fileID: 8260572118770307403}
-  - {fileID: -131338325336005759}
-  - {fileID: -8144536358173899534}
-  - {fileID: -5899111389198275477}
-  - {fileID: 7585973375119098489}
+  - {fileID: 4987022485959284024}
+  - {fileID: 5086513791911630261}
+  - {fileID: 4847442276592995099}
+  - {fileID: -3696237079745346579}
+  - {fileID: -896129183627872273}
+  - {fileID: -638205918359513542}
+  - {fileID: 8161801423218645767}
+  - {fileID: 2533975965119001666}
+  - {fileID: 2080367821664831904}
+  - {fileID: -3827576180100033908}
+  - {fileID: 3876547486378180219}
   EditorParameters:
-  - {fileID: -6553247309082480159}
+  - {fileID: 2400956275241909479}
   MasterBanks:
-  - {fileID: -4096082999553746503}
+  - {fileID: 8105150060356045306}
   StringsBanks:
-  - {fileID: 671238129012815440}
+  - {fileID: -3944190069109437694}
   cacheVersion: 131856
   cacheTime: 639010665140201905
   SerializableEventsDict:
-  - key: event:/TongueOut
-    index: 0
   - key: event:/Jump
+    index: 0
+  - key: event:/DoorClose
     index: 1
-  - key: event:/TongueIn
+  - key: event:/BoxHit
     index: 2
   - key: event:/Dash
     index: 3
-  - key: event:/ButtonClick
+  - key: event:/TongueIn
     index: 4
-  - key: event:/DoorClose
+  - key: event:/BGM
     index: 5
-  - key: event:/BoxHit
+  - key: event:/ButtonClick
     index: 6
   - key: event:/BoxBump
     index: 7
-  - key: event:/BGM
+  - key: event:/TongueOut
     index: 8
   - key: event:/BreakMusic
     index: 9
@@ -378,6 +654,54 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1350
   Exists: 1
+--- !u!114 &772384690586874467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/TongueOut/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &845460601843403373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/VictoryMusic/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &1299068643257592927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -402,6 +726,34 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &2080367821664831904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TongueOut
+  m_EditorClassIdentifier: 
+  Path: event:/TongueOut
+  Guid:
+    Data1: 811566031
+    Data2: 1234113627
+    Data3: 261037241
+    Data4: 1934343975
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 772384690586874467}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
 --- !u!114 &2143587515987321521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +778,86 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &2400956275241909479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: parameter:/SFX Volume
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &2533975965119001666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BoxBump
+  m_EditorClassIdentifier: 
+  Path: event:/BoxBump
+  Guid:
+    Data1: -337961826
+    Data2: 1124382419
+    Data3: 2040997792
+    Data4: 1819526014
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4312264014441995848}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &3876547486378180219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/VictoryMusic
+  m_EditorClassIdentifier: 
+  Path: event:/VictoryMusic
+  Guid:
+    Data1: 1433498603
+    Data2: 1248048983
+    Data3: 1234793909
+    Data4: 1597981521
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 845460601843403373}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4154
 --- !u!114 &4242906484541683793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +882,138 @@ MonoBehaviour:
   IsGlobal: 1
   Labels: []
   Exists: 1
+--- !u!114 &4312264014441995848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BoxBump/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
+--- !u!114 &4732388843788371698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/BGM/Volume
+  m_EditorClassIdentifier: 
+  Name: Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2781934831
+    data2: 3468005012
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &4847442276592995099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BoxHit
+  m_EditorClassIdentifier: 
+  Path: event:/BoxHit
+  Guid:
+    Data1: 1435200787
+    Data2: 1147620023
+    Data3: -1378196042
+    Data4: 972693635
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -903989124931049507}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &4987022485959284024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Jump
+  m_EditorClassIdentifier: 
+  Path: event:/Jump
+  Guid:
+    Data1: -140878839
+    Data2: 1151877447
+    Data3: 374822327
+    Data4: -645929727
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -3907124607595963083}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &5086513791911630261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/DoorClose
+  m_EditorClassIdentifier: 
+  Path: event:/DoorClose
+  Guid:
+    Data1: -2106514419
+    Data2: 1079382044
+    Data3: -2089074249
+    Data4: 2097612360
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 6367044822141131552}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &5516936947580351303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -526,6 +1090,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &6367044822141131552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/DoorClose/SFX Volume
+  m_EditorClassIdentifier: 
+  Name: SFX Volume
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 1762611489
+    data2: 727777908
+  Type: 0
+  IsGlobal: 1
+  Labels: []
+  Exists: 1
 --- !u!114 &6405215318249690569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -635,6 +1223,54 @@ MonoBehaviour:
   IsOneShot: 1
   Parameters:
   - {fileID: -581148464069149485}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 8000
+--- !u!114 &8105150060356045306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Resources/Sounds/BoxBox/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 639010665140181799
+  FileSizes:
+  - Name: Desktop
+    Value: 4942208
+  Exists: 1
+--- !u!114 &8161801423218645767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/ButtonClick
+  m_EditorClassIdentifier: 
+  Path: event:/ButtonClick
+  Guid:
+    Data1: 32107912
+    Data2: 1189333231
+    Data3: 1295348096
+    Data4: 449214641
+  Banks:
+  - {fileID: 8105150060356045306}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -5924955546515906153}
   MinDistance: 1
   MaxDistance: 20
   Length: 8000

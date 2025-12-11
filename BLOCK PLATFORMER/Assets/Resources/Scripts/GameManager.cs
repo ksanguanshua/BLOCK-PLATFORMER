@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Transform spawner;
     [SerializeField] Transform deliveryZone;
+    [SerializeField] Transform breakExit;
     [SerializeField] GameObject targetIndicator;
 
     [SerializeField] TextMeshProUGUI timer;
@@ -248,6 +249,11 @@ public class GameManager : MonoBehaviour
                         AudioManager.instance.SetBGMParameter("Scene", 0);
                         AudioManager.instance.PlayBGM();
 
+                        targetIndicator.SetActive(true);
+                        breakExit = GameObject.FindGameObjectWithTag("Break Exit").transform;
+                        targetIndicator.GetComponent<TargetIndicator>().player = GameObject.FindGameObjectWithTag("Player").transform;
+                        targetIndicator.GetComponent<TargetIndicator>().target = breakExit;
+
                         cashObject.SetActive(true);
                         timerObject.SetActive(false);
                         orderTrackerObject.SetActive(false);
@@ -260,6 +266,8 @@ public class GameManager : MonoBehaviour
 
                         Debug.Log("SET SCENE VALUE");
 
+                        targetIndicator.SetActive(false);
+
                         cashObject.SetActive(false);
                         timerObject.SetActive(false);
                         orderTrackerObject.SetActive(false);
@@ -267,6 +275,9 @@ public class GameManager : MonoBehaviour
                         break;
 
                     case "Level Select":
+
+                        targetIndicator.SetActive(false);
+
                         break;
 
                     default:
@@ -327,7 +338,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("BREAK TIME");
                 
                 startTimer = false;
-                targetIndicator.SetActive(false);
 
                 break;
         }
