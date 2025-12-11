@@ -388,9 +388,9 @@ public class MovementPlatformer2D : Movement
         {
             if (S.movementInput.y < 0 && S.isGrounded)
             {
-                S.movementSpeed = 0;
-                S.acceleration = 2;
-                S.decceleration = 2;
+                S.movementSpeed = M.movementSpeedCrouch;
+                S.acceleration = M.accelerationCrouch;
+                S.decceleration = M.deccelerationCrouch;
             }
             else if (S.isGrounded)
             {

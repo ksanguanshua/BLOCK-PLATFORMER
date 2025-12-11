@@ -15,7 +15,7 @@ public class UpgradeBox : Box
 
     [SerializeField] UpgradeFunction function;
 
-    string[] functionNames = { 
+    string[] functionNames = {
         "TongueLength",
         "TongueSpeed",
         "MovementSpeed",
@@ -112,12 +112,15 @@ public class UpgradeBox : Box
     {
         Debug.Log("UPGRADED TRACTION");
         movement.M.decceleration *= 1 + upgradePercent;
+        movement.M.acceleration *= 1 + upgradePercent;
         SaveData.instance.UpdateStats();
     }
 
     void BootySlide()
     {
         Debug.Log("UPGRADED BOOTY SLIDE");
+        movement.M.accelerationCrouch *= 1 - upgradePercent;
+        movement.M.deccelerationCrouch *= 1 - upgradePercent;
     }
 
     void ThrowForce()
