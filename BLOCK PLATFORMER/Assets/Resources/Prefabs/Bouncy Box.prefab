@@ -97,10 +97,9 @@ GameObject:
   m_Component:
   - component: {fileID: 102749878271769114}
   - component: {fileID: 1016956481598064498}
-  - component: {fileID: 4933964375702277706}
   - component: {fileID: 3889854381549063337}
   - component: {fileID: 7201842416899497839}
-  - component: {fileID: 215952850630786251}
+  - component: {fileID: 8979748292367538526}
   m_Layer: 7
   m_Name: Bouncy Box
   m_TagString: Box
@@ -179,19 +178,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4933964375702277706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8261550831112202955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f1bb0102fa989f41a1858046eca1f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  labelSprite: {fileID: 0}
 --- !u!114 &3889854381549063337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +190,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7be624bdb42ec5640b4cb37f101118fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bounciness: 2
+  labelSprite: {fileID: 0}
+  bounciness: 10
 --- !u!50 &7201842416899497839
 Rigidbody2D:
   serializedVersion: 5
@@ -232,8 +219,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &215952850630786251
-BoxCollider2D:
+--- !u!58 &8979748292367538526
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -267,14 +254,4 @@ BoxCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.99, y: 0.99}
-  m_EdgeRadius: 0
+  m_Radius: 0.5

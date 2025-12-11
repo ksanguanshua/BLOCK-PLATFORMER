@@ -27,6 +27,11 @@ public class Box : MonoBehaviour
 
     }
 
+    public virtual void OnTouch()
+    {
+
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (GetComponent<Rigidbody2D>().linearVelocity.magnitude > 5)
