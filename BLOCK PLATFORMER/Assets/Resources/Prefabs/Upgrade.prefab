@@ -372,7 +372,7 @@ MonoBehaviour:
   labelSprite: {fileID: 0}
   price: 100
   increaseMult: 1.5
-  upgradePercent: 0.1
+  upgradePercent: 0.05
   tongue: {fileID: 0}
   movement: {fileID: 0}
   priceText: {fileID: 3286406336669335018}
