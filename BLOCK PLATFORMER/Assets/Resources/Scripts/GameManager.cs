@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     public float phaseTimer = 60;
     float phaseTimer_t;
 
+    [SerializeField] Transform spawner;
+    [SerializeField] Transform deliveryZone;
+    [SerializeField] GameObject targetIndicator;
+
     [SerializeField] TextMeshProUGUI timer;
     [SerializeField] TextMeshProUGUI phaseStart;
     [SerializeField] TextMeshProUGUI orderTracker;
@@ -234,7 +238,7 @@ public class GameManager : MonoBehaviour
 
                 Debug.Log(SceneManager.GetActiveScene().name);
 
-                SaveData.instance.UpdateStats();
+                //SaveData.instance.UpdateStats();
 
                 switch (SceneManager.GetActiveScene().name)
                 {
@@ -270,6 +274,11 @@ public class GameManager : MonoBehaviour
                         Debug.Log("IN LEVEL");
                         AudioManager.instance.SetBGMParameter("Scene", 1);
 
+                        targetIndicator.SetActive(true);
+                        spawner = GameObject.FindGameObjectWithTag("Spawner").transform;
+                        deliveryZone = GameObject.FindGameObjectWithTag("Delivery Zone").transform;
+                        targetIndicator.GetComponent<TargetIndicator>().player = GameObject.FindGameObjectWithTag("Player").transform;
+
                         totalWaves = LevelInfo.instance.waves;
                         currentWave = 0;
                         phaseTimer_t = phaseTimer;
@@ -296,6 +305,8 @@ public class GameManager : MonoBehaviour
                 completedOrders = 0;
                 ordersToComplete = LevelInfo.instance.ordersPerWave[currentWave];
 
+                targetIndicator.GetComponent<TargetIndicator>().target = spawner;
+
                 break;
 
             case GameState.deliver:
@@ -307,6 +318,8 @@ public class GameManager : MonoBehaviour
                 cashObject.SetActive(true);
                 timerObject.SetActive(true);
 
+                targetIndicator.GetComponent<TargetIndicator>().target = deliveryZone;
+
                 break;
 
             case GameState.breakTime:
@@ -314,6 +327,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("BREAK TIME");
                 
                 startTimer = false;
+                targetIndicator.SetActive(false);
 
                 break;
         }

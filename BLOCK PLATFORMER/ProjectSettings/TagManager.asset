@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Box
+  - Delivery Zone
+  - Spawner
   layers:
   - Default
   - TransparentFX

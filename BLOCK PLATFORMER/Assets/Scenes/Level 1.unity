@@ -151,6 +151,8 @@ MonoBehaviour:
   _scenePrefabInstances:
   - _gameObject: {fileID: 1471615003}
     _prefab: Assets/Resources/Prefabs/GameManager.prefab
+  - _gameObject: {fileID: 1138796730497102016}
+    _prefab: Assets/Resources/Prefabs/Target Indicator.prefab
   - _gameObject: {fileID: 1138796730497102015}
     _prefab: Assets/Resources/Prefabs/Pause.prefab
   - _gameObject: {fileID: 387252262}
@@ -4465,6 +4467,11 @@ PrefabInstance:
 --- !u!1 &1138796730497102015 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1778186803768708236, guid: a6d1a3ccfed16724e9ff5a7e4df76a99, type: 3}
+  m_PrefabInstance: {fileID: 1138796730497102014}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1138796730497102016 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4767426384293550387, guid: a6d1a3ccfed16724e9ff5a7e4df76a99, type: 3}
   m_PrefabInstance: {fileID: 1138796730497102014}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2680984776599350715
