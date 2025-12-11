@@ -105,8 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   labelSprite: {fileID: 0}
-  throwTime: 1
-  staticTime: 5
+  throwTime: 0.5
+  staticTime: 30
 --- !u!50 &4025004255777264862
 Rigidbody2D:
   serializedVersion: 5
