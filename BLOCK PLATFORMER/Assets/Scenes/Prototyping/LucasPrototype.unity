@@ -174,15 +174,15 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.0022624435
-    width: 0.9987261
-    height: 0.9954752
+    x: 0.0015360983
+    y: 0.0027322404
+    width: 0.9953917
+    height: 0.9945355
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6.875
+  orthographic size: 5.6875
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -281,6 +281,55 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &491282826
+GameObject:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 491282828}
+  - component: {fileID: 491282827}
+  m_Layer: 0
+  m_Name: Prefab Indexer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &491282827
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491282826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05a7c62fccbafd342991629222351294, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scenePrefabInstances:
+  - _gameObject: {fileID: 2138179171}
+    _prefab: Assets/Resources/Prefabs/Box.prefab
+  - _gameObject: {fileID: 814475562}
+    _prefab: Assets/Resources/Prefabs/Polished Player.prefab
+--- !u!4 &491282828
+Transform:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 491282826}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &581098023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5230,6 +5279,11 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &814475562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4108830999990927025, guid: 0c7e972a8a477f14ca7aab4914b00577, type: 3}
+  m_PrefabInstance: {fileID: 581098023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1532132399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10030,7 +10084,7 @@ CompositeCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -14991,6 +15045,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6541038048113114784, guid: 0c7e972a8a477f14ca7aab4914b00577, type: 3}
   m_PrefabInstance: {fileID: 581098023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2138179171 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8952094280479633091, guid: ea241be3a2979244fa2de2a43e51f4c3, type: 3}
+  m_PrefabInstance: {fileID: 1532132399}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -14999,3 +15058,4 @@ SceneRoots:
   - {fileID: 1532132399}
   - {fileID: 581098023}
   - {fileID: 1636642676}
+  - {fileID: 491282828}
