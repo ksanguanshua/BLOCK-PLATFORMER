@@ -6,12 +6,12 @@ using UnityEngine.InputSystem;
 public class Platformer2DControllerBase : MonoBehaviour
 {
     Movement movement;
-    TongueScript tongueScript;
+    NewTongueScript tongueScript;
 
     private void Start()
     {
         movement = GetComponent<Movement>();
-        tongueScript = GetComponent<TongueScript>();
+        tongueScript = GetComponent<NewTongueScript>();
     }
 
     #region Input Functions
