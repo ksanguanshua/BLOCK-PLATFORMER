@@ -29,6 +29,11 @@ public class NewTongueScript : MonoBehaviour
         [SerializeField] public float tongueLerpSpeed;
         [SerializeField] public bool AIR_PULL;
         [SerializeField] public float tongueAirPullForce;
+        [LayoutStart("Tongue Swing", ELayout.FoldoutBox)]
+        [SerializeField] public float swingSpeed;
+        [SerializeField] public float swingAcceleration;
+        [SerializeField] public float swingDecceleration;
+        [SerializeField] public float swingStartForce;
         [LayoutStart("Timers", ELayout.FoldoutBox)]
         [SerializeField] public float holdTimeThreshold;
         [SerializeField] public float tongueTouchTimeThreshold;
@@ -57,6 +62,7 @@ public class NewTongueScript : MonoBehaviour
         [LayoutStart("Tongue States", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public bool tongueOut;
         [SerializeField][ReadOnly] public bool tongueHit;
+        [SerializeField][ReadOnly] public float tongueLerpSpeed;
         [SerializeField][ReadOnly] public Vector2 tongueLastDir;
         [SerializeField][ReadOnly] public Vector2 tongueOffset;
         [SerializeField][ReadOnly] public bool tongueRetracting;
@@ -68,8 +74,8 @@ public class NewTongueScript : MonoBehaviour
     {
         [LayoutStart("IMPORTANT", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public GameObject interactedObject;
-        [SerializeField][ReadOnly] public Transform tongueTip;
-        [SerializeField][ReadOnly] public Transform goalTongueTip;
+        [SerializeField] public Transform tongueTip;
+        [SerializeField] public Transform goalTongueTip;
         [LayoutStart("Components", ELayout.FoldoutBox)]
         [SerializeField][ReadOnly] public MovementPlatformer2D movement;
         [SerializeField][ReadOnly] public Animator anim;
@@ -79,6 +85,7 @@ public class NewTongueScript : MonoBehaviour
         [SerializeField] public LineRenderer tongueVisual2;
         [SerializeField] public LineRenderer tongueVisual3;
         [LayoutStart("Layers", ELayout.FoldoutBox)]
+        [SerializeField] public LayerMask hitableTongueLayer;
         [SerializeField] public LayerMask layerBox;
         [SerializeField] public LayerMask layerGround;
     }
@@ -87,68 +94,41 @@ public class NewTongueScript : MonoBehaviour
     [SerializeField][SaintsRow][RichLabel("References")] public References R;
     [SerializeField][SaintsRow][RichLabel("States")] public States S;
 
+    void Start()
+    {
+        S.tongueLerpSpeed = M.tongueLerpSpeed;
+        ComponentGrab();
+    }
+
+    void ComponentGrab()
+    {
+        R.movement = GetComponent<MovementPlatformer2D>();
+        R.anim = GetComponent<Animator>();
+        R.distanceJoint = GetComponent<DistanceJoint2D>();
+    }
     void Update()
     {
         TongueUpdate();
+        FaceUpdate();
+        TimerUpdate();
     }
 
-    public void GrabInput(float input)
+    void TimerUpdate()
     {
-        switch (S.stateMachine)
+        S.tongueTouchTime += Time.deltaTime;
+        if (S.stateMachine == PlayerState.TongueTouch && S.tongueTouchTime > M.tongueTouchTimeThreshold)
         {
-            case PlayerState.Base:
-                if (S.holdInput == 0 && input == 1)
-                {
-                    ThrowTongue(S.lastFacingDir);
-                    S.stateMachine = PlayerState.TongueTouch;
-                }
-                break;
-            case PlayerState.TongueTouch:
-                if (S.holdInput == 0 && input == 1) // tap again > pull
-                {
-                    if (R.interactedObject == null)
-                    {
-                        if (M.AIR_PULL)
-                        {
-                            TonguePull(false, M.tongueAirPullForce);
-                            S.stateMachine = PlayerState.Base;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        TonguePull(false, M.tonguePullForce);
-                        S.stateMachine = PlayerState.Base;
-                        break;
-                    }
-                }
-                else if (S.holdInputTime > M.holdTimeThreshold && R.interactedObject != null) // holding down button > swing
-                {
-                    TongueSwing();
-                    S.stateMachine = PlayerState.TongueHeld;
-                    break;
-                }
-                // break if too long in air
-                if (S.tongueTouchTime > M.tongueTouchTimeThreshold)
-                {
-                    S.stateMachine = PlayerState.Base;
-                    TongueRetract();
-                    break;
-                }
-                // time with tongue in the air with no input
-                S.tongueTouchTime += Time.deltaTime;
-                break;
-            case PlayerState.TongueHeld: // tongue swing
-                if (input == 0)
-                {
-                    TongueRetract();
-                    S.stateMachine = PlayerState.Base;
-                }
-                break;
+            PhysicsUnfreeze();
+            S.stateMachine = PlayerState.Base;
+            TongueRetract();
         }
 
-        //hold checker
-        S.holdInput = input;
+        if (S.stateMachine == PlayerState.TongueTouch && S.holdInputTime > M.holdTimeThreshold && R.interactedObject != null) // holding down button > swing
+        {
+            PhysicsUnfreeze();
+            TongueSwing();
+            S.stateMachine = PlayerState.TongueHeld;
+        }
 
         if (S.holdInput == 1)
         {
@@ -160,22 +140,65 @@ public class NewTongueScript : MonoBehaviour
         }
     }
 
-    private void TongueSwing()
+    public void GrabInput(float input)
     {
-        R.distanceJoint.anchor = R.tongueTip.position;
-        R.distanceJoint.enabled = true;
-        R.distanceJoint.distance = Vector2.Distance(transform.position, R.tongueTip.position);
+        switch (S.stateMachine)
+        {
+            case PlayerState.Base:
+                if (S.holdInput == 0 && input == 1)
+                {
+                    ThrowTongue(S.lastFacingDir);
+                    S.tongueTouchTime = 0;
+                    PhysicsFreeze();
+                    S.stateMachine = PlayerState.TongueTouch;
+                }
+                break;
+            case PlayerState.TongueTouch:
+                if (S.holdInput == 0 && input == 1) // tap again > pull
+                {
+                    if (R.interactedObject == null)
+                    {
+                        if (M.AIR_PULL)
+                        {
+                            PhysicsUnfreeze();
+                            AccelerationZero();
+                            TonguePull(false, M.tongueAirPullForce);
+                            S.stateMachine = PlayerState.Base;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        PhysicsUnfreeze();
+                        AccelerationZero();
+                        TonguePull(false, M.tonguePullForce);
+                        S.stateMachine = PlayerState.Base;
+                        break;
+                    }
+                }
+                break;
+            case PlayerState.TongueHeld: // tongue swing
+                if (input == 0)
+                {
+                    TongueSwingEnd();
+                    TongueRetract();
+                    PhysicsUnfreeze();
+                    S.stateMachine = PlayerState.Base;
+                }
+                break;
+        }
+
+        //hold checker
+        S.holdInput = input;
     }
 
-    private void ThrowTongue(Vector2 dir)
+    private void AccelerationZero()
     {
-        S.canTurn = false;
-        S.tongueOut = true;
-        UpdateTonguePoint(true, dir * M.tongueLength);
-        StartCoroutine("ThrowTongueExt");
+        R.movement.S.acceleration = 2;
+        R.movement.S.decceleration = 2;
+        R.movement.S.movementSpeed = 7;
     }
-
-    IEnumerator ThrowTongueExt()
+    private void PhysicsFreeze()
     {
         R.movement.S.state = Movement.State.Inactive;
         R.movement.S.acceleration = 0;
@@ -183,16 +206,68 @@ public class NewTongueScript : MonoBehaviour
         Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.linearVelocity = Vector2.zero;
         rigidbody2D.gravityScale = 0;
-        //START
-        yield return new WaitForSeconds((float)(M.tongueShootTime / 4f));
-        R.anim.SetBool("lookNEUTRAL", true);
+    }
 
-        //END
+    private void PhysicsUnfreeze()
+    {
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.gravityScale = 1;
-        R.movement.S.acceleration = R.movement.M.acceleration;
-        R.movement.S.decceleration = R.movement.M.decceleration;
+        if (rigidbody2D.linearVelocity.magnitude < 2)
+        {
+            R.movement.S.acceleration = R.movement.M.acceleration;
+            R.movement.S.decceleration = R.movement.M.decceleration;
+        }
+        else
+        {
+            R.movement.S.acceleration = 0;
+            R.movement.S.decceleration = 0;
+        }
         R.movement.S.state = Movement.State.Base;
-        R.anim.SetBool("lookNEUTRAL", false);
+    }
+    private void TongueSwing()
+    {
+        // change acceleration
+        R.movement.S.acceleration = M.swingAcceleration;
+        R.movement.S.decceleration = M.swingDecceleration;
+        R.movement.S.movementSpeed = M.swingSpeed;
+
+        // change anchor
+        R.distanceJoint.connectedAnchor = R.tongueTip.position;
+
+        // unparent goaltip
+        R.goalTongueTip.parent = null;
+        R.goalTongueTip.position = R.distanceJoint.connectedAnchor;
+        S.tongueLerpSpeed = 1;
+
+        // enable distance joint
+        R.distanceJoint.enabled = true;
+        R.distanceJoint.distance = Vector2.Distance(transform.position, R.tongueTip.position);
+
+        // apply force
+        Rigidbody2D rigidbody2D = GetComponent<Rigidbody2D>();
+        rigidbody2D.AddForce(M.swingStartForce * Vector2.down, ForceMode2D.Impulse);
+    }
+
+    private void TongueSwingEnd()
+    {
+        S.tongueLerpSpeed = M.tongueLerpSpeed;
+        R.goalTongueTip.parent = this.transform;
+        R.distanceJoint.enabled = false;
+    }
+
+    private void ThrowTongue(Vector2 dir)
+    {
+        S.canTurn = false;
+        S.tongueOut = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, M.tongueLength, R.hitableTongueLayer);
+        if (hit)
+        {
+            UpdateTonguePoint(false, hit.point + dir);
+        }
+        else
+        {
+            UpdateTonguePoint(true, dir * M.tongueLength);
+        }
     }
 
 
@@ -211,6 +286,7 @@ public class NewTongueScript : MonoBehaviour
 
     private void TongueRetract()
     {
+        R.interactedObject = null;
         UpdateTonguePoint(true, Vector2.zero);
         S.tongueOut = false;
         S.canTurn = true;
@@ -231,12 +307,12 @@ public class NewTongueScript : MonoBehaviour
     public void TongueUpdate()
     {
         //constant lerp
-        R.tongueTip.position = Vector2.Lerp(R.tongueTip.position, R.goalTongueTip.position, M.tongueLerpSpeed);
+        R.tongueTip.position = Vector2.Lerp(R.tongueTip.position, R.goalTongueTip.position, S.tongueLerpSpeed);
 
         //when throwing tongue, check to see if it hits something
         if (S.tongueOut && R.interactedObject == null)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, R.tongueTip.position);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, R.tongueTip.localPosition, Vector2.Distance(transform.position, R.tongueTip.position), R.hitableTongueLayer);
             if (hit)
             {
                 R.interactedObject = hit.collider.gameObject;
@@ -252,16 +328,16 @@ public class NewTongueScript : MonoBehaviour
         }
 
         //update visuals
-        R.tongueVisual1.SetPosition(1, S.tongueEndPoint);
-        R.tongueVisual2.SetPosition(1, S.tongueEndPoint);
-        R.tongueVisual3.SetPosition(1, S.tongueEndPoint);
+        R.tongueVisual1.SetPosition(1, R.tongueTip.parent == null ? R.tongueTip.position : R.tongueTip.localPosition);
+        R.tongueVisual2.SetPosition(1, R.tongueTip.parent == null ? R.tongueTip.position : R.tongueTip.localPosition);
+        R.tongueVisual3.SetPosition(1, R.tongueTip.parent == null ? R.tongueTip.position : R.tongueTip.localPosition);
     }
 
     public void FaceUpdate()
     {
-        if (S.canTurn)
+        if (S.canTurn && R.movement.S.movementInput != Vector2.zero)
         {
-            S.lastFacingDir = R.movement.S.facing;
+            S.lastFacingDir = R.movement.S.movementInput;
             //S.lastFacingDirLR = R
         }
     }

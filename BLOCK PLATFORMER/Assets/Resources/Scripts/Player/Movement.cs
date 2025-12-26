@@ -23,19 +23,18 @@ public abstract class Movement : MonoBehaviour
         [SerializeField] public float movementSpeed;
         [SerializeField] public float acceleration;
         [SerializeField] public float decceleration;
-        [LayoutStart("./Air", ELayout.FoldoutBox)]
+        [LayoutStart("Air", ELayout.FoldoutBox)]
         [SerializeField][RichLabel("Diff Val w/ Air?")] public bool DIFF_AIR_VALS;
         [ShowIf(nameof(DIFF_AIR_VALS))][SerializeField] public float movementSpeedAir;
         [ShowIf(nameof(DIFF_AIR_VALS))][SerializeField] public float accelerationAir;
         [ShowIf(nameof(DIFF_AIR_VALS))][SerializeField] public float deccelerationAir;
-        [LayoutEnd]
-        [LayoutEnd]
-        [LayoutStart("./Crouch", ELayout.FoldoutBox)]
+        [LayoutEnd()]
+        [LayoutStart("Crouch", ELayout.FoldoutBox)]
         [SerializeField][RichLabel("Diff Val w/ Crouch?")] public bool DIFF_CROUCH_VALS;
         [ShowIf(nameof(DIFF_CROUCH_VALS))][SerializeField] public float movementSpeedCrouch;
         [ShowIf(nameof(DIFF_CROUCH_VALS))][SerializeField] public float accelerationCrouch;
         [ShowIf(nameof(DIFF_CROUCH_VALS))][SerializeField] public float deccelerationCrouch;
-        [LayoutEnd]
+        [LayoutEnd()]
         [LayoutStart("Jump", ELayout.FoldoutBox)]
         [SerializeField][RichLabel("Can Jump?")] public bool JUMP_ABLE;
         [ShowIf(nameof(JUMP_ABLE))][SerializeField] public float jumpForce;

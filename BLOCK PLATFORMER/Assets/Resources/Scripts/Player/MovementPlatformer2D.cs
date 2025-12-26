@@ -386,7 +386,7 @@ public class MovementPlatformer2D : Movement
         }
 
         // change acceleration based on ground state
-        if (S.state == State.Base && M.DIFF_AIR_VALS)
+        if (S.state == State.Base && M.DIFF_AIR_VALS && M.DIFF_CROUCH_VALS)
         {
             if (S.movementInput.y < 0 && S.isGrounded)
             {
@@ -405,6 +405,23 @@ public class MovementPlatformer2D : Movement
                 S.movementSpeed = M.movementSpeedAir;
                 S.acceleration = M.accelerationAir;
                 S.decceleration = M.deccelerationAir;
+            }
+        }
+
+        // reset acceleration on grounding
+        if (S.state == State.Base && M.DIFF_CROUCH_VALS)
+        {
+            if (S.isGrounded && S.movementInput.y < 0)
+            {
+                S.movementSpeed = M.movementSpeedCrouch;
+                S.acceleration = M.accelerationCrouch;
+                S.decceleration = M.deccelerationCrouch;
+            }
+            else if (S.isGrounded)
+            {
+                S.movementSpeed = M.movementSpeed;
+                S.acceleration = M.acceleration;
+                S.decceleration = M.decceleration;
             }
         }
 
